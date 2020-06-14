@@ -1,6 +1,9 @@
 package Usuario;
 
-public class Cliente {
+import com.company.Avion;
 
+import java.util.List;
+
+public class Cliente {
     public List<Vuelo> listaVuelos;
 }
