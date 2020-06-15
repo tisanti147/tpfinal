@@ -20,6 +20,27 @@ public abstract class Avion {
         this.propulsion = propulsion;
     }
 
+    public int getCapacidadCombustible() {
+        return capacidadCombustible;
+    }
 
+    public int getCostoPorKM() {
+        return costoPorKM;
+    }
 
+    public int getCapacidadMaxPasajeros() {
+        return capacidadMaxPasajeros;
+    }
+
+    public int getVelocidadMax() {
+        return velocidadMax;
+    }
+
+    public int getTarifaAvion() {
+        return tarifaAvion;
+    }
+
+    public TipoPropulsion getPropulsion() {
+        return propulsion;
+    }
 }
