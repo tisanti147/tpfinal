@@ -2,7 +2,7 @@ package com.company;
 
 import Usuario.Provincia;
 import Usuario.Vuelo;
-import com.company.Menu;
+import Interfaz.Menu;
 
 public class Main {
 
