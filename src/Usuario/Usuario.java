@@ -1,5 +1,9 @@
 package Usuario;
 
+import com.company.Avion;
+
+import java.util.List;
+
 public class Usuario {
 
     private int id;
