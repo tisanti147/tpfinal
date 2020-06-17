@@ -41,7 +41,7 @@ public class Vuelo {
         return costoTotal;
     }
 
-    private void setDistances(){
+    public void setDistances(){
         this.distanciaVuelo.put("Buenos Aires Cordoba",695);
         this.distanciaVuelo.put("Buenos Aires Santiago de Chile",1400);
         this.distanciaVuelo.put("Buenos Aires Montevideo",950);
@@ -50,7 +50,7 @@ public class Vuelo {
         this.distanciaVuelo.put("Montevideo Santiago de Chile",2100);
     }
 
-    private int getDistance(String origin, String destiny){
+    public int getDistance(String origin, String destiny){
         int distance=((distanciaVuelo.containsKey(origin+" "+destiny))? distanciaVuelo.get(origin+" "+destiny) :
                 (distanciaVuelo.containsKey(destiny+" "+origin))? distanciaVuelo.get(destiny+" "+origin) : 0);
         return distance;
