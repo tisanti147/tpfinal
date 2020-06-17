@@ -4,7 +4,9 @@ import com.company.Avion;
 import com.company.Bronce;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Vuelo {
 
@@ -12,14 +14,14 @@ public class Vuelo {
     private Avion avion;
     private int cantPasajeros;
     private double costoTotal;
-    //HashSet <Provincia> origen;
-    //HashSet <Provincia> destino;
+    private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
     public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal){
         this.fecha = fecha;
         this.cantPasajeros = cantPasajeros;
         this.avion = avion;
         this.costoTotal = costoTotal;
+
     }
 
     @Override
@@ -37,6 +39,21 @@ public class Vuelo {
 
     public double getCostoTotal() {
         return costoTotal;
+    }
+
+    private void setDistances(){
+        this.distanciaVuelo.put("Buenos Aires Cordoba",695);
+        this.distanciaVuelo.put("Buenos Aires Santiago de Chile",1400);
+        this.distanciaVuelo.put("Buenos Aires Montevideo",950);
+        this.distanciaVuelo.put("Cordoba Montevideo",1190);
+        this.distanciaVuelo.put("Cordoba Santiago de Chile",1050);
+        this.distanciaVuelo.put("Montevideo Santiago de Chile",2100);
+    }
+
+    private int getDistance(String origin, String destiny){
+        int distance=((distanciaVuelo.containsKey(origin+" "+destiny))? distanciaVuelo.get(origin+" "+destiny) :
+                (distanciaVuelo.containsKey(destiny+" "+origin))? distanciaVuelo.get(destiny+" "+origin) : 0);
+        return distance;
     }
 
     //(Cantidad de kms * Costo del km) + (cantidad de pasajeros * 3500) + (Tarifa del tipo de avión)
