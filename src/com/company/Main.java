@@ -12,7 +12,9 @@ public class Main {
 
         Vuelo vuelo2 = new Vuelo("2 de mayo", 5, avion, vuelo1.calcularCosto(avion, 5, 1100));
 
+
         System.out.println(vuelo2.toString());
+
     }
 
 

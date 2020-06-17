@@ -1,6 +1,7 @@
 package Usuario;
 
 public enum Provincia {
+
     BSAS ("Buenos Aires"),
     CORDOBA ("Cordoba"),
     SANTIAGO ("Santiago de Chile"),
@@ -15,4 +16,5 @@ public enum Provincia {
     public String getNombre() {
         return nombre;
     }
+
 }
