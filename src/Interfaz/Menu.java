@@ -1,4 +1,4 @@
-package com.company;
+package Interfaz;
 
 public class Menu {
     int swValue;
