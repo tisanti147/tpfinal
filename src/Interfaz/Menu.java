@@ -1,9 +1,14 @@
 package Interfaz;
 
+import Usuario.Provincia;
+import Usuario.Vuelo;
+
 public class Menu {
     int swValue;
     int origen;
     int destino;
+    Provincia originProv;
+    Provincia destination;
     String fecha;
 
     public Menu(){
@@ -11,7 +16,7 @@ public class Menu {
     }
 
     // Switch construct
-    public void ejecutarMenu(){
+    public void ejecutarMenu(Vuelo vuelo){
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
@@ -25,8 +30,10 @@ public class Menu {
                 System.out.println("Fecha: ");
                 fecha = Keyin.inString();
 
-                System.out.println("Indicar lugar de origen: ");
+                // Se guarda la fecha del vuelo
+                vuelo.setFecha(fecha);
 
+                System.out.println("Indicar lugar de origen: ");
                 do {
                     System.out.println("1. Buenos Aires\n2. Cordoba\n3. Santiago de Chile\n4. Montevideo");
                     origen = Keyin.inInt("Origen: ");
@@ -34,6 +41,10 @@ public class Menu {
                     if (origen > 4 || origen < 1)
                         System.out.println("Opcion incorrecta.");
                 }while (origen > 4 || origen < 1);
+
+                // Se guarda el origen del vuelo
+                originProv = Provincia.valueOf(origen);
+                vuelo.setOrigen(originProv);
 
                 switch (origen) {
                     case 1:
