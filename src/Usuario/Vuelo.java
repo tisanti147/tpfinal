@@ -2,6 +2,7 @@ package Usuario;
 
 import com.company.Avion;
 import com.company.Bronce;
+import Usuario.Provincia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,31 +15,26 @@ public class Vuelo {
     private Avion avion;
     private int cantPasajeros;
     private double costoTotal;
+    private Provincia origen;
+    private Provincia destino;
     private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
-    public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal){
+    public Vuelo(){
+
+    }
+
+    public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal, Provincia origen, Provincia destino){
         this.fecha = fecha;
         this.cantPasajeros = cantPasajeros;
         this.avion = avion;
         this.costoTotal = costoTotal;
-
+        this.origen = origen;
+        this.destino = destino;
     }
 
     @Override
     public String toString(){
-        return "Fecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public int getCantPasajeros() {
-        return cantPasajeros;
-    }
-
-    public double getCostoTotal() {
-        return costoTotal;
+        return "Fecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
     }
 
     public void setDistances(){
@@ -60,6 +56,46 @@ public class Vuelo {
 
     public int calcularCosto (Avion avion, int pasajeros, int distancia){
         return (distancia * avion.getCostoPorKM()) + (pasajeros * 3500) + avion.getTarifaAvion();
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getCantPasajeros() {
+        return cantPasajeros;
+    }
+
+    public void setCantPasajeros(int cantPasajeros) {
+        this.cantPasajeros = cantPasajeros;
+    }
+
+    public double getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(double costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    public Provincia getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(Provincia origen) {
+        this.origen = origen;
+    }
+
+    public Provincia getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Provincia destino) {
+        this.destino = destino;
     }
 
     // cancelarVuelo

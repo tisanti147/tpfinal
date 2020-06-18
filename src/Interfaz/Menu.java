@@ -1,17 +1,26 @@
 package Interfaz;
 
+import Usuario.Provincia;
+import Usuario.Vuelo;
+import com.company.Compañia;
+
 public class Menu {
-    int swValue;
-    int origen;
-    int destino;
-    String fecha;
+    private int swValue;
+    private int origen;
+    private int destino;
+    private Provincia originProv;
+    private Provincia destinationProv;
+    private String fecha;
+    //private Compañia company;
 
     public Menu(){
 
     }
 
     // Switch construct
-    public void ejecutarMenu(){
+    public void ejecutarMenu(Vuelo vuelo, Compañia company){
+        int opcion = 0;
+
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
@@ -25,8 +34,10 @@ public class Menu {
                 System.out.println("Fecha: ");
                 fecha = Keyin.inString();
 
-                System.out.println("Indicar lugar de origen: ");
+                // Se guarda la fecha del vuelo
+                vuelo.setFecha(fecha);
 
+                System.out.println("Indicar lugar de origen: ");
                 do {
                     System.out.println("1. Buenos Aires\n2. Cordoba\n3. Santiago de Chile\n4. Montevideo");
                     origen = Keyin.inInt("Origen: ");
@@ -34,6 +45,11 @@ public class Menu {
                     if (origen > 4 || origen < 1)
                         System.out.println("Opcion incorrecta.");
                 }while (origen > 4 || origen < 1);
+
+                // Se guarda el origen del vuelo
+                originProv = Provincia.valueOf(origen);
+                System.out.println(originProv);
+                vuelo.setOrigen(originProv);
 
                 switch (origen) {
                     case 1:
@@ -54,6 +70,41 @@ public class Menu {
                     if (destino < 1 || destino > 3)
                         System.out.println("Opcion incorrecta.");
                 }while (destino < 1 || destino > 3);
+
+                // Comprobando cual es el destino
+                if (origen > 1 && destino == 1)
+                    destinationProv = Provincia.BSAS;
+                if (origen < 4 && destino == 3)
+                    destinationProv = Provincia.MONTEVIDEO;
+                if (origen == 1 && destino == 1)
+                    destinationProv = Provincia.CORDOBA;
+                if (origen > 2 && destino == 2)
+                    destinationProv = Provincia.CORDOBA;
+                if (origen < 3 && destino == 2)
+                    destinationProv = Provincia.SANTIAGO;
+                if (origen == 4 && destino == 3)
+                    destinationProv = Provincia.SANTIAGO;
+
+                System.out.println(destinationProv);
+
+                // Se guarda el destino del vuelo
+                vuelo.setDestino(destinationProv);
+
+                // Muestra los aviones. El usuario tiene que elegir uno
+                int aviones = company.getListaAviones();
+                System.out.println("Elija el avion para su vuelo: ");
+
+                // Comprueba que la opcion ingresada sea acorde a las opciones disponibles
+                do{
+                    opcion = Keyin.inInt("Opcion: ");
+                    if (opcion < 1 || opcion > aviones)
+                        System.out.println("Opcion invalida.");
+                }while (opcion < 1 || opcion > aviones);
+
+                // Se guardan los pasajeros del vuelo
+                // Falta comprobar que los pasajeros no se pasen del limite del avion
+                System.out.println("Indique el total de pasajes que desea reservar");
+                vuelo.setCantPasajeros(Keyin.inInt("Pasajeros: "));
 
             /*case 2:
                 System.out.println("Option 2 selected");

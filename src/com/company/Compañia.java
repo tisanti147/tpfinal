@@ -4,37 +4,40 @@ import Usuario.Usuario;
 import Usuario.Provincia;
 import Usuario.Vuelo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Compañia {
     private String nombre;
-    private List<Avion> ListaAviones;
-    private List<Usuario> ListaUsuario;
-    private List<Provincia> ListaProvincias;
-    private List<Vuelo> ListaVuelos;
+    private ArrayList<Avion> ListaAviones;
+    private ArrayList<Usuario> ListaUsuario;
+    //private List<Provincia> ListaProvincias;
+    private ArrayList<Vuelo> ListaVuelos;
 
-
-    public Compañia(String nombre){
+    public Compañia(String nombre/*List<Avion> listaAviones, List<Usuario> listaUsuario, List<Provincia> listaProvincias, List<Vuelo> listaVuelos*/) {
         this.nombre = nombre;
-    }
-
-    public Compañia(String nombre, List<Avion> listaAviones, List<Usuario> listaUsuario, List<Provincia> listaProvincias, List<Vuelo> listaVuelos) {
-        this.nombre = nombre;
-        ListaAviones = listaAviones;
-        ListaUsuario = listaUsuario;
-        ListaProvincias = listaProvincias;
-        ListaVuelos = listaVuelos;
-
+        ListaAviones = new ArrayList<Avion>();
+        ListaUsuario = new ArrayList<Usuario>();
+        //ListaProvincias = listaProvincias;
+        ListaVuelos = new ArrayList<Vuelo>();
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void getListaAviones() {
+    // Uso contador para registrar la cantidad de opciones que va a tener el usuario cuando use el menu
+    public int getListaAviones() {
+        int contador = 0;
         for (Avion avioncito : ListaAviones) {
+            contador++;
+            System.out.println(contador + ". ");
             System.out.println(avioncito.toString());
         }
+        return contador;
+    }
+
+    public void addAvion(Avion avion){
+        this.ListaAviones.add(avion);
     }
 
     public void getListaUsuario() {
@@ -43,11 +46,15 @@ public class Compañia {
         }
     }
 
-    public void getListaProvincias() {
+    public void addUsuario(Usuario user){
+        this.ListaUsuario.add(user);
+    }
+
+    /*public void getListaProvincias() {
         for (Provincia provincia : ListaProvincias) {
             System.out.println(provincia.toString());
         }
-    }
+    }*/
 
     public void getListaVuelos() {
         for (Vuelo vuelito : ListaVuelos) {
@@ -55,21 +62,25 @@ public class Compañia {
         }
     }
 
+    public void addVuelo(Vuelo vuelo){
+        this.ListaVuelos.add(vuelo);
+    }
+
     //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
     // de vuelos que le pases por parametro al final de la lista de vuelos existente ya dentro de la compania
-    public void setListaVuelos(List<Vuelo> listaVuelos) {
+    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
         ListaVuelos = listaVuelos;
     }
 
-    public void setListaAviones(List<Avion> listaAviones) {
+    public void setListaAviones(ArrayList<Avion> listaAviones) {
         ListaAviones = listaAviones;
     }
 
-    public void setListaUsuario(List<Usuario> listaUsuario) {
+    public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
         ListaUsuario = listaUsuario;
     }
 
-    public void setListaProvincias(List<Provincia> listaProvincias) {
+    /*public void setListaProvincias(List<Provincia> listaProvincias) {
         ListaProvincias = listaProvincias;
-    }
+    }*/
 }
