@@ -32,6 +32,14 @@ public class Vuelo {
         this.destino = destino;
     }
 
+    public void setAvion(Avion avion){
+        this.avion = avion;
+    }
+
+    public Avion getAvion(){
+        return this.avion;
+    }
+
     @Override
     public String toString(){
         return "Fecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();

@@ -94,17 +94,34 @@ public class Menu {
                 int aviones = company.getListaAviones();
                 System.out.println("Elija el avion para su vuelo: ");
 
-                // Comprueba que la opcion ingresada sea acorde a las opciones disponibles
+                // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
                 do{
                     opcion = Keyin.inInt("Opcion: ");
                     if (opcion < 1 || opcion > aviones)
                         System.out.println("Opcion invalida.");
                 }while (opcion < 1 || opcion > aviones);
 
+                // Guarda el avion en el vuelo
+                // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
+                // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
+                company.registarVuelo(vuelo, opcion);
+
                 // Se guardan los pasajeros del vuelo
                 // Falta comprobar que los pasajeros no se pasen del limite del avion
                 System.out.println("Indique el total de pasajes que desea reservar");
                 vuelo.setCantPasajeros(Keyin.inInt("Pasajeros: "));
+
+                // Calculando costo total con la distancia
+                vuelo.setDistances();
+
+                int distancia = vuelo.getDistance(vuelo.getOrigen().getNombre(), vuelo.getDestino().getNombre());
+                System.out.println(distancia);
+
+                double costoTotal = vuelo.calcularCosto(vuelo.getAvion(), vuelo.getCantPasajeros(), distancia);
+
+                System.out.println("Costo total del vuelo: " + costoTotal);
+
+                vuelo.setCostoTotal(costoTotal);
 
             /*case 2:
                 System.out.println("Option 2 selected");

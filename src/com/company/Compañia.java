@@ -36,6 +36,13 @@ public class Compañia {
         return contador;
     }
 
+    public void registarVuelo(Vuelo vuelo, int id){
+        for (Avion avion: ListaAviones){
+            if (id == avion.getId())
+                vuelo.setAvion(avion);
+        }
+    }
+
     public void addAvion(Avion avion){
         this.ListaAviones.add(avion);
     }

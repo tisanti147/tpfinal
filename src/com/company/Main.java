@@ -17,10 +17,13 @@ public class Main {
 
         // Creando la compañia con los aviones y usuario
         Compañia company = new Compañia("Tisanti");
-
         company.addAvion(avion1);
         company.addAvion(avion2);
+        System.out.println(avion1.toString());
+        System.out.println(avion2.toString());
+
         company.addUsuario(user1);
+
         company.getListaUsuario();
 
         // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
@@ -28,6 +31,8 @@ public class Main {
 
         Menu menu = new Menu();
         menu.ejecutarMenu(vuelo, company);
+
+        System.out.println(vuelo.toString());
 
         /*Vuelo vuelo1 = new Vuelo("2 de mayo", 5, avion, 0, Provincia.MONTEVIDEO, Provincia.BSAS);
 

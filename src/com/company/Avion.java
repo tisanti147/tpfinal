@@ -1,6 +1,8 @@
 package com.company;
 
 public abstract class Avion {
+    private static int contador = 0;
+    private int id;
     private int capacidadCombustible;
     private int costoPorKM;
     private int capacidadMaxPasajeros;
@@ -12,6 +14,8 @@ public abstract class Avion {
     }
 
     public Avion (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, int tarifaAvion, TipoPropulsion propulsion){
+        this.contador++;
+        this.id = contador;
         this.capacidadCombustible = capacidadCombustible;
         this.costoPorKM = costoPorKM;
         this. capacidadMaxPasajeros = capacidadMaxPasajeros;
@@ -42,5 +46,9 @@ public abstract class Avion {
 
     public TipoPropulsion getPropulsion() {
         return propulsion;
+    }
+
+    public int getId() {
+        return id;
     }
 }
