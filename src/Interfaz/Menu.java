@@ -2,6 +2,7 @@ package Interfaz;
 
 import Usuario.Provincia;
 import Usuario.Vuelo;
+import com.company.Compañia;
 
 public class Menu {
     private int swValue;
@@ -10,13 +11,14 @@ public class Menu {
     private Provincia originProv;
     private Provincia destinationProv;
     private String fecha;
+    //private Compañia company;
 
     public Menu(){
 
     }
 
     // Switch construct
-    public void ejecutarMenu(Vuelo vuelo){
+    public void ejecutarMenu(Vuelo vuelo, Compañia company){
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
@@ -82,6 +84,11 @@ public class Menu {
                     destinationProv = Provincia.SANTIAGO;
 
                 System.out.println(destinationProv);
+
+                // Se guarda el destino del vuelo
+                vuelo.setDestino(destinationProv);
+
+                company.getListaAviones();
 
                 // Se guardan los pasajeros del vuelo
                 System.out.println("Indique el total de pasajes que desea reservar");

@@ -30,7 +30,6 @@ public class Vuelo {
         this.costoTotal = costoTotal;
         this.origen = origen;
         this.destino = destino;
-
     }
 
     @Override
