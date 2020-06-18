@@ -52,7 +52,7 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + getApellido() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
+        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + " " + getApellido() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
     }
 
     public int getId() {

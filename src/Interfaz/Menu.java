@@ -19,6 +19,8 @@ public class Menu {
 
     // Switch construct
     public void ejecutarMenu(Vuelo vuelo, Compañia company){
+        int opcion = 0;
+
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
@@ -88,9 +90,19 @@ public class Menu {
                 // Se guarda el destino del vuelo
                 vuelo.setDestino(destinationProv);
 
-                company.getListaAviones();
+                // Muestra los aviones. El usuario tiene que elegir uno
+                int aviones = company.getListaAviones();
+                System.out.println("Elija el avion para su vuelo: ");
+
+                // Comprueba que la opcion ingresada sea acorde a las opciones disponibles
+                do{
+                    opcion = Keyin.inInt("Opcion: ");
+                    if (opcion < 1 || opcion > aviones)
+                        System.out.println("Opcion invalida.");
+                }while (opcion < 1 || opcion > aviones);
 
                 // Se guardan los pasajeros del vuelo
+                // Falta comprobar que los pasajeros no se pasen del limite del avion
                 System.out.println("Indique el total de pasajes que desea reservar");
                 vuelo.setCantPasajeros(Keyin.inInt("Pasajeros: "));
 

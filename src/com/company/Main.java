@@ -8,11 +8,14 @@ import Interfaz.Menu;
 public class Main {
 
     public static void main(String[] args) {
+        // Creando aviones
         Bronce avion1 = new Bronce(3000, 200, 50, 700, TipoPropulsion.HELICE);
         Bronce avion2 = new Bronce(2500, 150, 40, 600, TipoPropulsion.PISTONES);
 
+        // Cargando un usuario
         Usuario user1 = new Usuario("Santiago", "Martinez", 41928128, 20, null);
 
+        // Creando la compañia con los aviones y usuario
         Compañia company = new Compañia("Tisanti");
 
         company.addAvion(avion1);
@@ -20,6 +23,7 @@ public class Main {
         company.addUsuario(user1);
         company.getListaUsuario();
 
+        // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
         Vuelo vuelo = new Vuelo();
 
         Menu menu = new Menu();

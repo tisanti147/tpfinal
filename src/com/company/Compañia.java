@@ -25,10 +25,15 @@ public class Compañia {
         return nombre;
     }
 
-    public void getListaAviones() {
+    // Uso contador para registrar la cantidad de opciones que va a tener el usuario cuando use el menu
+    public int getListaAviones() {
+        int contador = 0;
         for (Avion avioncito : ListaAviones) {
+            contador++;
+            System.out.println(contador + ". ");
             System.out.println(avioncito.toString());
         }
+        return contador;
     }
 
     public void addAvion(Avion avion){
