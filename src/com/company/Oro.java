@@ -10,12 +10,12 @@ public class Oro extends Avion implements catering{
 
     @Override
     public String toString(){
-        return "Capacidad de combustible: " + getCapacidadCombustible() + "\nCosto por kilometro: " + getCostoPorKM() + "\nCapacidad de pasajeros: " + getCapacidadMaxPasajeros() + "\nVelocidad maxima: " + getVelocidadMax() + "\nTarifa: " + getTarifaAvion() + "\nTipo de propulsion: " + getPropulsion();
+        return "ID del avion: " + getId() + "\nCapacidad de combustible: " + getCapacidadCombustible() + "\nCosto por kilometro: " + getCostoPorKM() + "\nCapacidad de pasajeros: " + getCapacidadMaxPasajeros() + "\nVelocidad maxima: " + getVelocidadMax() + "\nTarifa: " + getTarifaAvion() + "\nTipo de propulsion: " + getPropulsion();
     }
 
     @Override
-    public void servicioDeCatering(){
-        System.out.println("Pidiendo servicio de catering.");
+    public boolean servicioDeCatering(){
+        return true;
     }
 
 }

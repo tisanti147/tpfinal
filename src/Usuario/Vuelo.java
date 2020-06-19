@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Vuelo {
-
     private String fecha;
     private Avion avion;
     private int cantPasajeros;
@@ -30,6 +29,14 @@ public class Vuelo {
         this.costoTotal = costoTotal;
         this.origen = origen;
         this.destino = destino;
+    }
+
+    public void setAvion(Avion avion){
+        this.avion = avion;
+    }
+
+    public Avion getAvion(){
+        return this.avion;
     }
 
     @Override

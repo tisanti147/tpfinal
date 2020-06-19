@@ -2,12 +2,14 @@ package Interfaz;
 
 import Usuario.Provincia;
 import Usuario.Vuelo;
+import com.company.Avion;
 import com.company.Compañia;
 
 public class Menu {
     private int swValue;
     private int origen;
     private int destino;
+    private int pasajeros;
     private Provincia originProv;
     private Provincia destinationProv;
     private String fecha;
@@ -65,6 +67,7 @@ public class Menu {
                         System.out.println("1. Buenos Aires\n2. Cordoba\n3. Santiago de Chile");
                         break;
                 }
+
                 do{
                     destino = Keyin.inInt("Destino: ");
                     if (destino < 1 || destino > 3)
@@ -91,20 +94,48 @@ public class Menu {
                 vuelo.setDestino(destinationProv);
 
                 // Muestra los aviones. El usuario tiene que elegir uno
-                int aviones = company.getListaAviones();
+                // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
+                // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
+
+                System.out.println(fecha);
+                company.mostrarAvionesDisponibles(fecha);
+
+                //int aviones = company.getListaAviones();
                 System.out.println("Elija el avion para su vuelo: ");
 
-                // Comprueba que la opcion ingresada sea acorde a las opciones disponibles
-                do{
+                // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
+                /*do{
                     opcion = Keyin.inInt("Opcion: ");
                     if (opcion < 1 || opcion > aviones)
                         System.out.println("Opcion invalida.");
-                }while (opcion < 1 || opcion > aviones);
+                }while (opcion < 1 || opcion > aviones);*/
+
+                // Guarda el avion en el vuelo
+
+                company.registrarAvionEnVuelo(vuelo, opcion);
+
+                // Comprueba que los pasajeros no se pasen de la capacidad del avion
+                System.out.println("Indique el total de pasajes que desea reservar");
+                do{
+                    pasajeros = Keyin.inInt("Pasajeros: ");
+                    if (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros())
+                        System.out.println("El avion elegido no cuenta con esa capacidad de pasajeros.");
+                }while (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros());
 
                 // Se guardan los pasajeros del vuelo
-                // Falta comprobar que los pasajeros no se pasen del limite del avion
-                System.out.println("Indique el total de pasajes que desea reservar");
-                vuelo.setCantPasajeros(Keyin.inInt("Pasajeros: "));
+                vuelo.setCantPasajeros(pasajeros);
+
+                // Calculando costo total con la distancia
+                vuelo.setDistances();
+
+                int distancia = vuelo.getDistance(vuelo.getOrigen().getNombre(), vuelo.getDestino().getNombre());
+                System.out.println(distancia);
+
+                double costoTotal = vuelo.calcularCosto(vuelo.getAvion(), vuelo.getCantPasajeros(), distancia);
+
+                System.out.println("Costo total del vuelo: " + costoTotal);
+
+                vuelo.setCostoTotal(costoTotal);
 
             /*case 2:
                 System.out.println("Option 2 selected");

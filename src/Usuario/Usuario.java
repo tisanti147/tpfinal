@@ -3,6 +3,7 @@ package Usuario;
 import com.company.Avion;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Usuario {
 
@@ -11,8 +12,12 @@ public class Usuario {
     private String apellido;
     private long dni;
     private int edad;
-    private Cliente infoVuelo;
+    private ArrayList<Vuelo> listaVuelos;
     private static int contadorUsuario=0;
+
+    public void addVuelo(Vuelo vuelo){
+        this.listaVuelos.add(vuelo);
+    }
 
     /*public Usuario() {
     }*/
@@ -40,14 +45,14 @@ public class Usuario {
     }*/
 
 
-    public Usuario(/*int id, */String nombre, String apellido, long dni, int edad, Cliente infoVuelo) {
+    public Usuario(/*int id, */String nombre, String apellido, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
-        this.infoVuelo = infoVuelo;
+        listaVuelos = new ArrayList<Vuelo>();
     }
 
     @Override
