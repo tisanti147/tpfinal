@@ -1,6 +1,7 @@
 package com.company;
 
 public abstract class Avion {
+
     private int capacidadCombustible;
     private int costoPorKM;
     private int capacidadMaxPasajeros;
@@ -8,7 +9,13 @@ public abstract class Avion {
     private int tarifaAvion;
     private TipoPropulsion propulsion;
 
-    public Avion() {
+
+    public Avion(){
+        this.capacidadCombustible=0;
+        this.costoPorKM=0;
+        this.capacidadMaxPasajeros=0;
+        this.velocidadMax=0;
+        this.propulsion=null;
     }
 
     public Avion (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, int tarifaAvion, TipoPropulsion propulsion){
@@ -43,4 +50,26 @@ public abstract class Avion {
     public TipoPropulsion getPropulsion() {
         return propulsion;
     }
+
+
+    public void setCapacidadCombustible(int capacidadCombustible) {
+        this.capacidadCombustible = capacidadCombustible;
+    }
+
+    public void setCostoPorKM(int costoPorKM) {
+        this.costoPorKM = costoPorKM;
+    }
+
+    public void setCapacidadMaxPasajeros(int capacidadMaxPasajeros) {
+        this.capacidadMaxPasajeros = capacidadMaxPasajeros;
+    }
+
+    public void setVelocidadMax(int velocidadMax) {
+        this.velocidadMax = velocidadMax;
+    }
+
+    public void setPropulsion(TipoPropulsion propulsion) {
+        this.propulsion = propulsion;
+    }
 }
+
