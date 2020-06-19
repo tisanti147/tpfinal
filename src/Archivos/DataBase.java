@@ -29,6 +29,8 @@ public class DataBase {
     //trae Lista de Usuarios, compara por DNI los usuarios de la lista. Si encuentra coincidencia, devuelve el usuario con sus datos
     //sino devuelve el Objetoc on el DNI asignado para crear un NUEVO USUARIO
 
+    // No es necesario buscar un usuario por DNI
+
     /*public Usuario buscarUsuario(int dni){
         List<Usuario> listaUsuario = null;
         try {
@@ -50,6 +52,8 @@ public class DataBase {
         }
         return nuevoUsuario;
     }
+
+    //UsuarioVuelo y VueloCompañia no son necesarios por ahora
 
  //Traigo objeto de tipo Vuelo, si es UsuarioVuelo, llama al método de escritura de Usuarios
     //Si es de tipo VueloCompañia, llama al método de escritura de datos en Compañia
