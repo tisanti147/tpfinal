@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-    public List<Vuelo> listaVuelos;
+    public List<UsuarioVuelo> listaVuelos;
 
     public Cliente() {
         listaVuelos = new ArrayList<>();
