@@ -11,8 +11,8 @@ public class Plata extends Avion implements catering{
     }
 
     @Override
-    public void servicioDeCatering(){
-        System.out.println("Pidiendo servicio de catering.");
+    public boolean servicioDeCatering(){
+        return true;
     }
 
 }

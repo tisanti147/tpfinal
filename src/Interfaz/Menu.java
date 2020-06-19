@@ -107,14 +107,15 @@ public class Menu {
                 // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
                 company.registrarVuelo(vuelo, opcion);
 
-                // Se guardan los pasajeros del vuelo
-                // Falta comprobar que los pasajeros no se pasen del limite del avion
+                // Comprueba que los pasajeros no se pasen de la capacidad del avion
                 System.out.println("Indique el total de pasajes que desea reservar");
                 do{
                     pasajeros = Keyin.inInt("Pasajeros: ");
                     if (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros())
                         System.out.println("El avion elegido no cuenta con esa capacidad de pasajeros.");
                 }while (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros());
+
+                // Se guardan los pasajeros del vuelo
                 vuelo.setCantPasajeros(pasajeros);
 
                 // Calculando costo total con la distancia
