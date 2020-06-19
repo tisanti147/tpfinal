@@ -4,6 +4,7 @@ import Usuario.Usuario;
 import Usuario.Provincia;
 import Usuario.Vuelo;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class Compañia {
@@ -36,7 +37,7 @@ public class Compañia {
         return contador;
     }
 
-    public void registrarVuelo(Vuelo vuelo, int id){
+    public void registrarAvionEnVuelo(Vuelo vuelo, int id){
         for (Avion avion: ListaAviones){
             if (id == avion.getId())
                 vuelo.setAvion(avion);
@@ -45,6 +46,13 @@ public class Compañia {
 
     public void addAvion(Avion avion){
         this.ListaAviones.add(avion);
+    }
+
+    public void mostrarAvionesDisponibles (String fecha){
+        for (Vuelo vuelo: ListaVuelos){
+            if(fecha != vuelo.getFecha())
+                System.out.println(vuelo.getAvion().toString());
+        }
     }
 
     public void getListaUsuario() {

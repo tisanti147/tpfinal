@@ -2,6 +2,7 @@ package Interfaz;
 
 import Usuario.Provincia;
 import Usuario.Vuelo;
+import com.company.Avion;
 import com.company.Compañia;
 
 public class Menu {
@@ -66,6 +67,7 @@ public class Menu {
                         System.out.println("1. Buenos Aires\n2. Cordoba\n3. Santiago de Chile");
                         break;
                 }
+
                 do{
                     destino = Keyin.inInt("Destino: ");
                     if (destino < 1 || destino > 3)
@@ -92,20 +94,25 @@ public class Menu {
                 vuelo.setDestino(destinationProv);
 
                 // Muestra los aviones. El usuario tiene que elegir uno
-                int aviones = company.getListaAviones();
+                // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
+                // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
+
+                System.out.println(fecha);
+                company.mostrarAvionesDisponibles(fecha);
+
+                //int aviones = company.getListaAviones();
                 System.out.println("Elija el avion para su vuelo: ");
 
                 // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
-                do{
+                /*do{
                     opcion = Keyin.inInt("Opcion: ");
                     if (opcion < 1 || opcion > aviones)
                         System.out.println("Opcion invalida.");
-                }while (opcion < 1 || opcion > aviones);
+                }while (opcion < 1 || opcion > aviones);*/
 
                 // Guarda el avion en el vuelo
-                // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
-                // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
-                company.registrarVuelo(vuelo, opcion);
+
+                company.registrarAvionEnVuelo(vuelo, opcion);
 
                 // Comprueba que los pasajeros no se pasen de la capacidad del avion
                 System.out.println("Indique el total de pasajes que desea reservar");
