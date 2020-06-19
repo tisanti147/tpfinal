@@ -36,7 +36,7 @@ public class Compañia {
         return contador;
     }
 
-    public void registarVuelo(Vuelo vuelo, int id){
+    public void registrarVuelo(Vuelo vuelo, int id){
         for (Avion avion: ListaAviones){
             if (id == avion.getId())
                 vuelo.setAvion(avion);

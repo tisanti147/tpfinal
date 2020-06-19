@@ -8,6 +8,7 @@ public class Menu {
     private int swValue;
     private int origen;
     private int destino;
+    private int pasajeros;
     private Provincia originProv;
     private Provincia destinationProv;
     private String fecha;
@@ -104,12 +105,17 @@ public class Menu {
                 // Guarda el avion en el vuelo
                 // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
                 // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
-                company.registarVuelo(vuelo, opcion);
+                company.registrarVuelo(vuelo, opcion);
 
                 // Se guardan los pasajeros del vuelo
                 // Falta comprobar que los pasajeros no se pasen del limite del avion
                 System.out.println("Indique el total de pasajes que desea reservar");
-                vuelo.setCantPasajeros(Keyin.inInt("Pasajeros: "));
+                do{
+                    pasajeros = Keyin.inInt("Pasajeros: ");
+                    if (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros())
+                        System.out.println("El avion elegido no cuenta con esa capacidad de pasajeros.");
+                }while (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros());
+                vuelo.setCantPasajeros(pasajeros);
 
                 // Calculando costo total con la distancia
                 vuelo.setDistances();
