@@ -75,4 +75,68 @@ public class Usuario {
     public void agregarVuelo(UsuarioVuelo userFlight){
         this.listaVuelos.add(userFlight);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public Usuario.Cliente getInfoVuelo() {
+        return infoVuelo;
+    }
+
+    public void setInfoVuelo(Usuario.Cliente infoVuelo) {
+        this.infoVuelo = infoVuelo;
+    }
+
+    public List<Usuario.UsuarioVuelo> getListaVuelos() {
+        return listaVuelos;
+    }
+
+    public void setListaVuelos(List<Usuario.UsuarioVuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
+    }
+
+    public static int getContadorUsuario() {
+        return contadorUsuario;
+    }
+
+    public static void setContadorUsuario(int contadorUsuario) {
+        Usuario.contadorUsuario = contadorUsuario;
+    }
 }
