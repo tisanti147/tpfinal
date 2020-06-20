@@ -4,6 +4,8 @@ import Usuario.Provincia;
 import Usuario.Vuelo;
 import com.company.Avion;
 import com.company.Compañia;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,14 +24,17 @@ public class Menu {
 
     // Switch construct
     public void ejecutarMenu(Vuelo vuelo, Compañia company){
-        int opcion = 0;
+        int IdAvion = 0;
+        int aviones;
         String fecha;
         Scanner sc = new Scanner(System.in);
+        ArrayList<Avion> listaAviones = new ArrayList<Avion>();
+
 
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
-        System.out.println("|        2. Option 2       |");
+        System.out.println("|        2. Registrarse       |");
         System.out.println("|        3. Exit           |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
@@ -38,13 +43,8 @@ public class Menu {
                 System.out.println("Indicar fecha");
                 System.out.println("Fecha: ");
 
-                //fecha = Keyin.inString();
                 fecha = sc.nextLine();
-                //System.out.println(fecha);
 
-                //company.mostrarAvionesDisponibles(fecha);
-
-                // Se guarda la fecha del vuelo
                 vuelo.setFecha(fecha);
 
                 System.out.println("Indicar lugar de origen: ");
@@ -101,46 +101,32 @@ public class Menu {
                 // Se guarda el destino del vuelo
                 vuelo.setDestino(destinationProv);
 
-                // Muestra los aviones. El usuario tiene que elegir uno
-                // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
-                // Comprueba que el avion elegido no este reservado para la fecha ingresada
-
-                company.mostrarAvionesDisponibles(fecha);
-                int aviones = company.getListaAviones();
-                System.out.println("\n\n");
-
-                System.out.println("Elija el avion para su vuelo: ");
-                do{
-                    opcion = Keyin.inInt("Ingrese ID del avion: ");
-                    if (company.comprobarIdAvion(opcion, fecha))
-                        System.out.println("El avion con esa ID no está disponible en la fecha ingresada");
-                    if (opcion < 1 || opcion >aviones)
-                        System.out.println("No existen aviones con esa numero de ID");
-                }while (company.comprobarIdAvion(opcion, fecha) || opcion < 1 || opcion >aviones);
-
-                /*int aviones = company.getListaAviones();
-
-                // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
-                do{
-                    opcion = Keyin.inInt("Opcion: ");
-                    if (opcion < 1 || opcion > aviones)
-                        System.out.println("Opcion invalida.");
-                }while (opcion < 1 || opcion > aviones);*/
-
-                // Guarda el avion en el vuelo
-
-                company.registrarAvionEnVuelo(vuelo, opcion);
-
-                // Comprueba que los pasajeros no se pasen de la capacidad del avion
-                System.out.println("Indique el total de pasajes que desea reservar");
-                do{
+                System.out.println("Ingrese la cantidad de pasajeros que abordaran");
+                do {
                     pasajeros = Keyin.inInt("Pasajeros: ");
-                    if (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros())
-                        System.out.println("El avion elegido no cuenta con esa capacidad de pasajeros.");
-                }while (pasajeros > vuelo.getAvion().getCapacidadMaxPasajeros());
+                    listaAviones = company.getAvionesDisponiblesFecha(fecha, pasajeros);
+                    if (listaAviones.size() == 0)
+                        System.out.println("No tenemos aviones disponibles con esa capacidad de pasajeros.");
+                }while (listaAviones.size() == 0);
 
-                // Se guardan los pasajeros del vuelo
-                vuelo.setCantPasajeros(pasajeros);
+                System.out.println("Aviones disponibles: ");
+                for (Avion avion: listaAviones){
+                    System.out.println(avion.toString());
+                }
+
+                System.out.println("Ingrese el ID del avion que desea abordar");
+                aviones = company.getListaAviones();
+
+                do{
+                    IdAvion = Keyin.inInt("Ingrese ID del avion: ");
+                    if (company.comprobarIdAvion(IdAvion, fecha))
+                        System.out.println("El avion con esa ID no está disponible en la fecha ingresada");
+                    if (IdAvion < 1 || IdAvion > aviones)
+                        System.out.println("No existen aviones con esa numero de ID");
+                }while (company.comprobarIdAvion(IdAvion, fecha) || IdAvion < 1 || IdAvion >aviones);
+
+                // Registrando avion en el vuelo
+                company.registrarAvionEnVuelo(vuelo, IdAvion);
 
                 // Calculando costo total con la distancia
                 vuelo.setDistances();
@@ -154,10 +140,10 @@ public class Menu {
 
                 vuelo.setCostoTotal(costoTotal);
 
-            /*case 2:
-                System.out.println("Option 2 selected");
+            case 2:
+                System.out.println("Ingrese sus datos personales: ");
                 break;
-            case 3:
+            /*case 3:
                 System.out.println("Exit selected");
                 break;
             case 4:

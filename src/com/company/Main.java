@@ -8,6 +8,7 @@ import Interfaz.Menu;
 import Archivos.DataBase;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -27,19 +28,12 @@ public class Main {
 
         company.addUsuario(user1);
 
+        // Creando vuelos y cargandolos en compañia
         Vuelo flight1 = new Vuelo("23 de mayo", 3, avion1, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight2 = new Vuelo("8 de julio", 3, avion2, 1000, Provincia.BSAS, Provincia.CORDOBA);
 
         company.addVuelo(flight1);
         company.addVuelo(flight2);
-
-        //company.getListaVuelos();
-
-        /*String f = Keyin.inString();
-        System.out.println(f);
-        company.mostrarAvionesDisponibles(f);*/
-        //System.out.println(company.comprobarIdAvion(1, "24 de mayo"));
-        //System.out.println(company.verificarCapacidadMaxdeAvion(5));
 
         // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
         Vuelo vuelo = new Vuelo();

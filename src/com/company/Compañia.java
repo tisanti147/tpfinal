@@ -65,16 +65,21 @@ public class Compañia {
         return false;
     }
 
-    public boolean verificarCapacidadMaxdeAvion(int pasajeros){
-        boolean verif = true;
-        for (Avion avion: ListaAviones){
-            if (pasajeros > avion.getCapacidadMaxPasajeros()){
-                verif = false;
-            }
-            else
-                verif = true;
+    public ArrayList<Avion> getAvionesDisponiblesFecha(String fecha, int pasajeros){
+        ArrayList<Avion> listaFecha = new ArrayList<Avion>();
+        ArrayList<Avion> listaPasajeros = new ArrayList<Avion>();
+
+        for (Vuelo vuelo: ListaVuelos){
+            if (!fecha.equals(vuelo.getFecha()))
+                listaFecha.add(vuelo.getAvion());
         }
-        return verif;
+
+        for (Avion avion: listaFecha){
+            if (avion.getCapacidadMaxPasajeros() >= pasajeros)
+                listaPasajeros.add(avion);
+        }
+
+        return listaPasajeros;
     }
 
     public void getListaUsuario() {
