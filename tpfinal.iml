@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../json-simple-1.1.1.zip!/" />
+          <root url="jar://C:/Users/json-simple-1.1.1.zip!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-annotations-2.11.0" />
+          <root url="file://$USER_HOME$/ramaLucia/jackson-annotations-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-core-2.11.0" />
+          <root url="file://$USER_HOME$/ramaLucia/jackson-core-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,7 +37,34 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-databind-2.11.0" />
+          <root url="file://$USER_HOME$/ramaLucia/jackson-databind-2.11.0" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/jackson-core-2.11.0" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/jackson-databind-2.11.0" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/jackson-annotations-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

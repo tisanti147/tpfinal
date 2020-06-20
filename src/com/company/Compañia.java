@@ -1,11 +1,13 @@
+
 package com.company;
 
-import Usuario.Usuario;
-import Usuario.Provincia;
-import Usuario.Vuelo;
+        import Usuario.Usuario;
+        import Usuario.Provincia;
+        import Usuario.Vuelo;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
+        import java.awt.image.AreaAveragingScaleFilter;
+        import java.util.ArrayList;
+        import java.util.List;
 
 public class Compañia {
     private String nombre;
@@ -13,6 +15,7 @@ public class Compañia {
     private ArrayList<Usuario> ListaUsuario;
     //private List<Provincia> ListaProvincias;
     private ArrayList<Vuelo> ListaVuelos;
+    private List<VueloCompañia> ListaVueloCompañia;
 
     public Compañia(String nombre/*List<Avion> listaAviones, List<Usuario> listaUsuario, List<Provincia> listaProvincias, List<Vuelo> listaVuelos*/) {
         this.nombre = nombre;
@@ -101,6 +104,10 @@ public class Compañia {
 
     public void addVuelo(Vuelo vuelo){
         this.ListaVuelos.add(vuelo);
+    }
+
+    public void addVueloCompañia(VueloCompañia companyFlight) {
+        this.ListaVueloCompañia.add(companyFlight);
     }
 
     //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
