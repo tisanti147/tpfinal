@@ -73,7 +73,7 @@ public class DataBase {
 
      //Metodos de DATOS DE COMPAÑIA, recibe un Object que busca en la base de datos de Compañia.
     //Se ve el tipo de objeto que es y se agrega a la lista correspondiente de la Compañia
-    private void escribirArchivoCompañia(Object obj) throws JsonGenerationException, JsonMappingException, IOException {
+    public void escribirArchivoCompañia(Object obj) throws JsonGenerationException, JsonMappingException, IOException {
 
         Compañia compania = leerArchivoCompañia();
 
@@ -90,11 +90,16 @@ public class DataBase {
     }
 
 
-    private Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException {
+    public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException {
         Compañia compania = mapper.readValue(FileCompany, Compañia.class);
-        System.out.println(compania.toString());
+        compania.getListaUsuario();
+        compania.getListaAviones();
+        compania.getListaVuelos();
+        //System.out.println(compania.toString());
         return compania;
     }
+
+
 
 
     //USUARIOVUELO, escritura y lectura
@@ -156,6 +161,5 @@ public class DataBase {
         System.out.println(vuelo.toString());
         return vuelo;
     }
-
 
 }
