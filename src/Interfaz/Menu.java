@@ -4,6 +4,7 @@ import Usuario.Provincia;
 import Usuario.Vuelo;
 import com.company.Avion;
 import com.company.Compañia;
+import java.util.Scanner;
 
 public class Menu {
     private int swValue;
@@ -23,6 +24,7 @@ public class Menu {
     public void ejecutarMenu(Vuelo vuelo, Compañia company){
         int opcion = 0;
         String fecha;
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
@@ -35,7 +37,12 @@ public class Menu {
             case 1:
                 System.out.println("Indicar fecha");
                 System.out.println("Fecha: ");
-                fecha = Keyin.inString();
+
+                //fecha = Keyin.inString();
+                fecha = sc.nextLine();
+                //System.out.println(fecha);
+
+                //company.mostrarAvionesDisponibles(fecha);
 
                 // Se guarda la fecha del vuelo
                 vuelo.setFecha(fecha);
@@ -95,17 +102,26 @@ public class Menu {
                 vuelo.setDestino(destinationProv);
 
                 // Muestra los aviones. El usuario tiene que elegir uno
-                // Falta comprobar la disponibilidad en la fecha que ingresa el usuario
-                // Seguramente esto ultimo haga conflicto con la variable ID que agregue en la clase Avion
+                // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
+                // Comprueba que el avion elegido no este reservado para la fecha ingresada
 
-                System.out.println(fecha);
                 company.mostrarAvionesDisponibles(fecha);
+                int aviones = company.getListaAviones();
+                System.out.println("\n\n");
 
-                //int aviones = company.getListaAviones();
                 System.out.println("Elija el avion para su vuelo: ");
+                do{
+                    opcion = Keyin.inInt("Ingrese ID del avion: ");
+                    if (company.comprobarIdAvion(opcion, fecha))
+                        System.out.println("El avion con esa ID no está disponible en la fecha ingresada");
+                    if (opcion < 1 || opcion >aviones)
+                        System.out.println("No existen aviones con esa numero de ID");
+                }while (company.comprobarIdAvion(opcion, fecha) || opcion < 1 || opcion >aviones);
+
+                /*int aviones = company.getListaAviones();
 
                 // Comprueba que la opcion ingresada sea acorde a las aviones disponibles
-                /*do{
+                do{
                     opcion = Keyin.inInt("Opcion: ");
                     if (opcion < 1 || opcion > aviones)
                         System.out.println("Opcion invalida.");
