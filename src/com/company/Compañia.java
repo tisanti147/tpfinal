@@ -26,6 +26,7 @@ public class Compañia {
         return nombre;
     }
 
+
     // Uso contador para registrar la cantidad de opciones que va a tener el usuario cuando use el menu
     public int getListaAviones() {
         int contador = 0;

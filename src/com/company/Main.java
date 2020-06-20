@@ -4,6 +4,7 @@ import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
+import Archivos.DataBase;
 
 public class Main {
 
@@ -45,8 +46,9 @@ public class Main {
         company.addVuelo(vuelo);
         company.getListaVuelos();
 
-        /*System.out.println("\nMostrando aviones disponibles \n");
-        company.getAvionesDisponibles("3 de julio");*/
+        /*DataBase archivo = new DataBase();
+        archivo.escribirArchivoCompañia(company);
+        archivo.leerArchivoCompañia();*/
 
     }
 

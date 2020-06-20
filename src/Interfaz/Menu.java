@@ -12,7 +12,7 @@ public class Menu {
     private int pasajeros;
     private Provincia originProv;
     private Provincia destinationProv;
-    private String fecha;
+    //private String fecha;
     //private Compañia company;
 
     public Menu(){
@@ -22,6 +22,7 @@ public class Menu {
     // Switch construct
     public void ejecutarMenu(Vuelo vuelo, Compañia company){
         int opcion = 0;
+        String fecha;
 
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
