@@ -1,17 +1,20 @@
 package com.company;
 
+import Interfaz.Keyin;
 import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
 import Archivos.DataBase;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Creando aviones
-        Bronce avion1 = new Bronce(3000, 200, 5, 700, TipoPropulsion.HELICE);
-        Bronce avion2 = new Bronce(2500, 150, 4, 600, TipoPropulsion.PISTONES);
+        Bronce avion1 = new Bronce(3000, 200, 4, 700, TipoPropulsion.HELICE);
+        Bronce avion2 = new Bronce(2500, 150, 5, 600, TipoPropulsion.PISTONES);
 
         // Cargando un usuario
         Usuario user1 = new Usuario("Santiago", "Martinez", 41928128, 20);
@@ -32,7 +35,11 @@ public class Main {
 
         //company.getListaVuelos();
 
-        company.mostrarAvionesDisponibles("9 de marzo");
+        /*String f = Keyin.inString();
+        System.out.println(f);
+        company.mostrarAvionesDisponibles(f);*/
+        //System.out.println(company.comprobarIdAvion(1, "24 de mayo"));
+        //System.out.println(company.verificarCapacidadMaxdeAvion(5));
 
         // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
         Vuelo vuelo = new Vuelo();

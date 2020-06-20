@@ -19,8 +19,7 @@ public class DataBase {
     private File filePlane = new File("Avion.json");
     private File FileUserflight = new File("UsuarioVuelo.json");
     private File FileCompanyflight = new File("CompaniaVuelo.json");
-    private File FileCompany = new File("Compania.json");
-
+    private final File FileCompany = new File("Compania.json");
 
     public DataBase(){};
 
@@ -117,7 +116,6 @@ public class DataBase {
 
    //trae al nuevo usuario, lo agrega a la lista de usuarios de la compañia, lo agrega en el archivo de usuarios
     public void guardarNuevoUsuario(Usuario nuevoUsuario) throws IOException {
-
         escribirArchivoCompañia(nuevoUsuario);
         escribirArchivoUsuario(nuevoUsuario);
     }

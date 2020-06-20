@@ -32,8 +32,8 @@ public class Compañia {
         int contador = 0;
         for (Avion avioncito : ListaAviones) {
             contador++;
-            System.out.println(contador + ". ");
-            System.out.println(avioncito.toString());
+            /*System.out.println(contador + ". ");
+            System.out.println(avioncito.toString());*/
         }
         return contador;
     }
@@ -51,9 +51,30 @@ public class Compañia {
 
     public void mostrarAvionesDisponibles (String fecha){
         for (Vuelo vuelo: ListaVuelos){
-            if(fecha != vuelo.getFecha())
+            if(!fecha.equals(vuelo.getFecha()))
                 System.out.println(vuelo.getAvion().toString());
         }
+    }
+
+    public boolean comprobarIdAvion(int id, String fecha){
+        for (Vuelo vuelo: ListaVuelos){
+            if(fecha.equals(vuelo.getFecha()) && id == vuelo.getAvion().getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificarCapacidadMaxdeAvion(int pasajeros){
+        boolean verif = true;
+        for (Avion avion: ListaAviones){
+            if (pasajeros > avion.getCapacidadMaxPasajeros()){
+                verif = false;
+            }
+            else
+                verif = true;
+        }
+        return verif;
     }
 
     public void getListaUsuario() {
