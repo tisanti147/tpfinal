@@ -35,12 +35,12 @@ public class Menu {
         Usuario user = null;
 
 
-        System.out.println("|   AERTOTAXI   |");
-        System.out.println("|     1. Reservar pasaje    |");
-        System.out.println("|     2. Registrarse        |");
-        System.out.println("|     3. Cancelar vuelo     |");
-        System.out.println("|     4. Mostrar vuelos     |");
-        System.out.println("|     5. Mostrar usuario    |");
+        System.out.println("|          AERTOTAXI          |");
+        System.out.println("|  1. Reservar pasaje         |");
+        System.out.println("|  2. Registrarse             |");
+        System.out.println("|  3. Cancelar vuelo          |");
+        System.out.println("|  4. Mostrar vuelos          |");
+        System.out.println("|  5. Informacion de usuario  |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
@@ -226,10 +226,23 @@ public class Menu {
                     System.out.println("No hay usuario registrado con ese DNI");
                     break;
                 }
-                else
-                    company.mostrarUsuarioDNI(dni);
-                break;
-
+                System.out.println("1. Informacion: ");
+                System.out.println("2. Gastos totales: ");
+                System.out.println("3. Nivel de la cuenta: ");
+                swValue = Keyin.inInt("Opcion: ");
+                switch (swValue){
+                    case 1:
+                        System.out.println("Datos personales: ");
+                        company.mostrarUsuarioDNI(dni);
+                        break;
+                    case 2:
+                        System.out.println("Gastos totales: ");
+                        System.out.println(user.getGastosTotales());
+                        break;
+                    case 3:
+                        System.out.println("Membresía: " + user.mejorCategoria());
+                        break;
+                }
             default:
                 System.out.println("Invalid selection");
                 break; // This break is not really necessary

@@ -80,16 +80,31 @@ public class Usuario {
     }
 
     public String mejorCategoria(){
-        String categoria = "";
+        String categoria = null;
+        int nivel = 0;
         for (Vuelo vuelo: listaVuelos){
-            if (vuelo.getAvion() instanceof Bronce)
+            if (vuelo.getAvion() instanceof Bronce && nivel < 2) {
                 categoria = "Bronce";
-            if (vuelo.getAvion() instanceof Plata)
+                nivel = 1;
+            }
+            if (vuelo.getAvion() instanceof Plata && nivel < 3) {
                 categoria = "Plata";
-            if (vuelo.getAvion() instanceof Oro)
+                nivel = 2;
+            }
+            if (vuelo.getAvion() instanceof Oro) {
                 categoria = "Oro";
+                nivel = 3;
+            }
         }
         return categoria;
+    }
+
+    public int getGastosTotales(){
+        int gastos = 0;
+        for (Vuelo vuelo: listaVuelos){
+            gastos += vuelo.getCostoTotal();
+        }
+        return gastos;
     }
 
     public String getNombre() {

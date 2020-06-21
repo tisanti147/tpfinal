@@ -39,7 +39,8 @@ public class Main {
         Vuelo flight4 = new Vuelo("1 de enero", 6, avion4, 4000, Provincia.MONTEVIDEO, Provincia.SANTIAGO);
 
         user1.addVuelo(flight1);
-        user1.addVuelo(flight3);
+        user1.addVuelo(flight4);
+        user1.addVuelo(flight2);
 
         company.addVuelo(flight1);
         company.addVuelo(flight2);
