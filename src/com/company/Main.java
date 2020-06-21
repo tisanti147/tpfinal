@@ -18,7 +18,7 @@ public class Main {
         Bronce avion2 = new Bronce(2500, 150, 5, 600, TipoPropulsion.PISTONES);
 
         // Cargando un usuario
-        Usuario user1 = new Usuario("Santiago", "Martinez", 41928128, 20);
+        Usuario user1 = new Usuario("Santiago Martinez", 41928128, 20);
 
         // Creando la compañia con los aviones y usuario
         Compañia company = new Compañia("Tisanti");

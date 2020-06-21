@@ -9,7 +9,6 @@ public class Usuario {
 
     private int id;
     private String nombre;
-    private String apellido;
     private long dni;
     private int edad;
     private ArrayList<Vuelo> listaVuelos;
@@ -45,11 +44,10 @@ public class Usuario {
     }*/
 
 
-    public Usuario(/*int id, */String nombre, String apellido, long dni, int edad) {
+    public Usuario(/*int id, */String nombre, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
         listaVuelos = new ArrayList<Vuelo>();
@@ -57,7 +55,7 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + " " + getApellido() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
+        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
     }
 
     public int getId() {
@@ -66,10 +64,6 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
     }
 
     public long getDni() {

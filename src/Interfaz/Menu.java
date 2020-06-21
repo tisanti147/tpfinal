@@ -15,8 +15,6 @@ public class Menu {
     private int pasajeros;
     private Provincia originProv;
     private Provincia destinationProv;
-    //private String fecha;
-    //private Compañia company;
 
     public Menu(){
 
@@ -101,6 +99,8 @@ public class Menu {
                 // Se guarda el destino del vuelo
                 vuelo.setDestino(destinationProv);
 
+                // Comprueba que haya un avion con la capacidad de pasajeros ingresados
+
                 System.out.println("Ingrese la cantidad de pasajeros que abordaran");
                 do {
                     pasajeros = Keyin.inInt("Pasajeros: ");
@@ -109,14 +109,17 @@ public class Menu {
                         System.out.println("No tenemos aviones disponibles con esa capacidad de pasajeros.");
                 }while (listaAviones.size() == 0);
 
+                // Muestra los aviones disponibles tomando en cuenta la fecha
                 System.out.println("Aviones disponibles: ");
                 for (Avion avion: listaAviones){
                     System.out.println(avion.toString());
                 }
 
+                // El usuario ingresa el ID del avion que quiere reservar
                 System.out.println("Ingrese el ID del avion que desea abordar");
-                aviones = company.getListaAviones();
+                aviones = company.getListaAviones(); // Esto comprueba la cantidad de aviones que hay
 
+                // Comprueba que el ID ingresado no sea de un avion que no existe o que ya esta reservado
                 do{
                     IdAvion = Keyin.inInt("Ingrese ID del avion: ");
                     if (company.comprobarIdAvion(IdAvion, fecha))
@@ -138,6 +141,7 @@ public class Menu {
 
                 System.out.println("Costo total del vuelo: " + costoTotal);
 
+                // Guardando el costo en el vuelo
                 vuelo.setCostoTotal(costoTotal);
 
             case 2:

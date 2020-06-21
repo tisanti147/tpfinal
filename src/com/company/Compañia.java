@@ -88,6 +88,20 @@ public class Compañia {
         }
     }
 
+    public void mostrarUsuarioNombre(String nombre){
+        for(Usuario user: ListaUsuario){
+            if(user.getNombre().equals(nombre))
+                System.out.println(user.toString());
+        }
+    }
+
+    public void mostrarUsuarioDNI(long dni) {
+        for (Usuario user : ListaUsuario) {
+            if (user.getDni() == dni)
+                System.out.println(user.toString());
+        }
+    }
+
     public void addUsuario(Usuario user){
         this.ListaUsuario.add(user);
     }
