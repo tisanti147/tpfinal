@@ -1,6 +1,9 @@
 package Usuario;
 
 import com.company.Avion;
+import com.company.Bronce;
+import com.company.Oro;
+import com.company.Plata;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -9,7 +12,6 @@ public class Usuario {
 
     private int id;
     private String nombre;
-    private String apellido;
     private long dni;
     private int edad;
     private ArrayList<Vuelo> listaVuelos;
@@ -19,37 +21,10 @@ public class Usuario {
         this.listaVuelos.add(vuelo);
     }
 
-    /*public Usuario() {
-    }*/
-
-    /*public Usuario(Cliente client)
-    {
-        this.contadorUsuario++;
-        this.id=contadorUsuario;
-        this.nombre="";
-        this.apellido="";
-        this.dni=0;
-        this.edad=0;
-        this.infoVuelo=client;
-    }*/
-
-    /*public Usuario(int dni)
-    {
-        this.contadorUsuario++;
-        this.id=contadorUsuario;
-        this.nombre="";
-        this.apellido="";
-        this.dni=dni;
-        this.edad=0;
-        this.infoVuelo=null;
-    }*/
-
-
-    public Usuario(/*int id, */String nombre, String apellido, long dni, int edad) {
+    public Usuario(/*int id, */String nombre, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.dni = dni;
         this.edad = edad;
         listaVuelos = new ArrayList<Vuelo>();
@@ -57,26 +32,80 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + " " + getApellido() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
+        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
     }
 
-    public int getId() {
-        return id;
+    public void mostrarVuelos(){
+        for (Vuelo vuelo: listaVuelos)
+            System.out.println(vuelo.toString());
+    }
+
+    public Vuelo getVueloConID(int id){
+        Vuelo aux = null;
+        for (Vuelo vuelo: listaVuelos) {
+            if (vuelo.getIdVuelo() == id)
+                aux = vuelo;
+        }
+        return aux;
+    }
+
+    public void cancelarVuelo(Vuelo vuelo){
+        listaVuelos.remove(vuelo);
+    }
+
+    public String mejorCategoria(){
+        String categoria = null;
+        int nivel = 0;
+        for (Vuelo vuelo: listaVuelos){
+            if (vuelo.getAvion() instanceof Bronce && nivel < 2) {
+                categoria = "Bronce";
+                nivel = 1;
+            }
+            if (vuelo.getAvion() instanceof Plata && nivel < 3) {
+                categoria = "Plata";
+                nivel = 2;
+            }
+            if (vuelo.getAvion() instanceof Oro) {
+                categoria = "Oro";
+                nivel = 3;
+            }
+        }
+        return categoria;
+    }
+
+    public int getGastosTotales(){
+        int gastos = 0;
+        for (Vuelo vuelo: listaVuelos){
+            gastos += vuelo.getCostoTotal();
+        }
+        return gastos;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public long getDni() {
         return dni;
     }
 
+    public void setDni(long dni) {
+        this.dni = dni;
+    }
+
     public int getEdad() {
         return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getId() {
+        return id;
     }
 }

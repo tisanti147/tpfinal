@@ -14,7 +14,7 @@ public class Compañia {
     //private List<Provincia> ListaProvincias;
     private ArrayList<Vuelo> ListaVuelos;
 
-    public Compañia(String nombre/*List<Avion> listaAviones, List<Usuario> listaUsuario, List<Provincia> listaProvincias, List<Vuelo> listaVuelos*/) {
+    public Compañia(String nombre) {
         this.nombre = nombre;
         ListaAviones = new ArrayList<Avion>();
         ListaUsuario = new ArrayList<Usuario>();
@@ -65,33 +65,55 @@ public class Compañia {
         return false;
     }
 
-    public boolean verificarCapacidadMaxdeAvion(int pasajeros){
-        boolean verif = true;
-        for (Avion avion: ListaAviones){
-            if (pasajeros > avion.getCapacidadMaxPasajeros()){
-                verif = false;
-            }
-            else
-                verif = true;
+    public ArrayList<Avion> getAvionesDisponiblesFecha(String fecha, int pasajeros){
+        ArrayList<Avion> listaFecha = new ArrayList<Avion>();
+        ArrayList<Avion> listaPasajeros = new ArrayList<Avion>();
+
+        for (Vuelo vuelo: ListaVuelos){
+            if (!fecha.equals(vuelo.getFecha()))
+                listaFecha.add(vuelo.getAvion());
         }
-        return verif;
+
+        for (Avion avion: listaFecha){
+            if (avion.getCapacidadMaxPasajeros() >= pasajeros)
+                listaPasajeros.add(avion);
+        }
+
+        return listaPasajeros;
     }
 
-    public void getListaUsuario() {
+    public void mostrarListaUsuario() {
         for (Usuario user : ListaUsuario) {
             System.out.println(user.toString());
         }
     }
 
+    public void mostrarUsuarioNombre(String nombre){
+        for(Usuario user: ListaUsuario){
+            if(user.getNombre().equals(nombre))
+                System.out.println(user.toString());
+        }
+    }
+
+    public void mostrarUsuarioDNI(long dni) {
+        for (Usuario user : ListaUsuario) {
+            if (user.getDni() == dni)
+                System.out.println(user.toString());
+        }
+    }
+
+    public Usuario getUsuarioDNI(long dni){
+        Usuario aux = null;
+        for (Usuario user: ListaUsuario){
+            if(dni == user.getDni())
+                aux = user;
+        }
+        return aux;
+    }
+
     public void addUsuario(Usuario user){
         this.ListaUsuario.add(user);
     }
-
-    /*public void getListaProvincias() {
-        for (Provincia provincia : ListaProvincias) {
-            System.out.println(provincia.toString());
-        }
-    }*/
 
     public void getListaVuelos() {
         for (Vuelo vuelito : ListaVuelos) {
@@ -101,6 +123,35 @@ public class Compañia {
 
     public void addVuelo(Vuelo vuelo){
         this.ListaVuelos.add(vuelo);
+    }
+
+    public Vuelo getVueloConID(int id){
+        Vuelo aux = new Vuelo();
+        for (Vuelo vuelo: ListaVuelos) {
+            if (vuelo.getIdVuelo() == id)
+                aux = vuelo;
+        }
+        return aux;
+    }
+
+    public ArrayList<Vuelo> getVuelosConFecha (String fecha){
+        ArrayList<Vuelo> aux = new ArrayList<Vuelo>();
+        for (Vuelo vuelo: ListaVuelos){
+            if(fecha.equals(vuelo.getFecha()))
+                aux.add(vuelo);
+        }
+        return aux;
+    }
+
+    public void mostrarVueloConFecha(String fecha){
+        for (Vuelo vuelo: ListaVuelos){
+            if(vuelo.getFecha().equals(fecha))
+                System.out.println(vuelo.toString());
+        }
+    }
+
+    public void cancelarVuelo(Vuelo vuelo){
+        ListaVuelos.remove(vuelo);
     }
 
     //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
@@ -116,8 +167,4 @@ public class Compañia {
     public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
         ListaUsuario = listaUsuario;
     }
-
-    /*public void setListaProvincias(List<Provincia> listaProvincias) {
-        ListaProvincias = listaProvincias;
-    }*/
 }
