@@ -77,6 +77,24 @@ public class Usuario {
         return edad;
     }
 
+    public void mostrarVuelos(){
+        for (Vuelo vuelo: listaVuelos)
+            System.out.println(vuelo.toString());
+    }
+
+    public Vuelo getVueloConID(int id){
+        Vuelo aux = new Vuelo();
+        for (Vuelo vuelo: listaVuelos) {
+            if (vuelo.getIdVuelo() == id)
+                aux = vuelo;
+        }
+        return aux;
+    }
+
+    public void cancelarVuelo(Vuelo vuelo){
+        listaVuelos.remove(vuelo);
+    }
+
     public String mejorCategoria(){
         String categoria = "";
         for (Vuelo vuelo: listaVuelos){

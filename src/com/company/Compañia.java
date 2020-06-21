@@ -122,6 +122,19 @@ public class Compañia {
         this.ListaVuelos.add(vuelo);
     }
 
+    public Vuelo getVueloConID(int id){
+        Vuelo aux = new Vuelo();
+        for (Vuelo vuelo: ListaVuelos) {
+            if (vuelo.getIdVuelo() == id)
+                aux = vuelo;
+        }
+        return aux;
+    }
+
+    public void cancelarVuelo(Vuelo vuelo){
+        ListaVuelos.remove(vuelo);
+    }
+
     //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
     // de vuelos que le pases por parametro al final de la lista de vuelos existente ya dentro de la compania
     public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
