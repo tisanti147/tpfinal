@@ -40,6 +40,7 @@ public class Menu {
         System.out.println("|     2. Registrarse        |");
         System.out.println("|     3. Cancelar vuelo     |");
         System.out.println("|     4. Mostrar vuelos     |");
+        System.out.println("|     5. Mostrar usuario    |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
@@ -213,9 +214,20 @@ public class Menu {
                     break;
                 }
                 else {
-                    for (Vuelo flight : aux)
+                    for (Vuelo flight: aux)
                         System.out.println(flight.toString());
                 }
+                break;
+            case 5:
+                System.out.println("Ingrese su DNI: ");
+                dni = scDNI.nextLong();
+                user = company.getUsuarioDNI(dni);
+                if (user == null) {
+                    System.out.println("No hay usuario registrado con ese DNI");
+                    break;
+                }
+                else
+                    company.mostrarUsuarioDNI(dni);
                 break;
 
             default:
