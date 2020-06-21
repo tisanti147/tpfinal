@@ -16,6 +16,7 @@ public class Main {
         // Creando aviones
         Bronce avion1 = new Bronce(3000, 200, 4, 700, TipoPropulsion.HELICE);
         Bronce avion2 = new Bronce(2500, 150, 5, 600, TipoPropulsion.PISTONES);
+        Oro avion3 = new Oro(5000, 250, 10, 700, TipoPropulsion.PISTONES, true);
 
         // Cargando un usuario
         Usuario user1 = new Usuario("Santiago Martinez", 41928128, 20);
@@ -32,8 +33,17 @@ public class Main {
         Vuelo flight1 = new Vuelo("23 de mayo", 3, avion1, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight2 = new Vuelo("8 de julio", 3, avion2, 1000, Provincia.BSAS, Provincia.CORDOBA);
 
+        Vuelo flight3 = new Vuelo("2 de abril", 2, avion3, 5000, Provincia.CORDOBA, Provincia.MONTEVIDEO);
+
+        user1.addVuelo(flight1);
+        user1.addVuelo(flight3);
+
+        System.out.println(user1.mejorCategoria());
+
         company.addVuelo(flight1);
         company.addVuelo(flight2);
+
+        company.getListaVuelos();
 
         // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
         Vuelo vuelo = new Vuelo();
@@ -42,7 +52,7 @@ public class Main {
         menu.ejecutarMenu(vuelo, company);
 
         user1.addVuelo(vuelo);
-        user1.toString();
+        System.out.println(user1.toString());
 
         company.addVuelo(vuelo);
         company.getListaVuelos();

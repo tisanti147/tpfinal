@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Vuelo {
+    private int idVuelo;
+    private static int contador = 0;
     private String fecha;
     private Avion avion;
     private int cantPasajeros;
@@ -19,10 +21,13 @@ public class Vuelo {
     private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
     public Vuelo(){
-
+        contador++;
+        this.idVuelo = contador;
     }
 
     public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal, Provincia origen, Provincia destino){
+        contador++;
+        this.idVuelo = contador;
         this.fecha = fecha;
         this.cantPasajeros = cantPasajeros;
         this.avion = avion;
@@ -41,7 +46,7 @@ public class Vuelo {
 
     @Override
     public String toString(){
-        return "Fecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
+        return "ID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
     }
 
     public void setDistances(){
@@ -103,6 +108,10 @@ public class Vuelo {
 
     public void setDestino(Provincia destino) {
         this.destino = destino;
+    }
+
+    public int getIdVuelo() {
+        return idVuelo;
     }
 
     // cancelarVuelo

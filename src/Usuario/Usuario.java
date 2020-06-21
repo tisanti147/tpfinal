@@ -1,6 +1,9 @@
 package Usuario;
 
 import com.company.Avion;
+import com.company.Bronce;
+import com.company.Oro;
+import com.company.Plata;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -72,5 +75,18 @@ public class Usuario {
 
     public int getEdad() {
         return edad;
+    }
+
+    public String mejorCategoria(){
+        String categoria = "";
+        for (Vuelo vuelo: listaVuelos){
+            if (vuelo.getAvion() instanceof Bronce)
+                categoria = "Bronce";
+            if (vuelo.getAvion() instanceof Plata)
+                categoria = "Plata";
+            if (vuelo.getAvion() instanceof Oro)
+                categoria = "Oro";
+        }
+        return categoria;
     }
 }
