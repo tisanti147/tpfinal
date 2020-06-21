@@ -113,8 +113,6 @@ public class Vuelo {
     public int getIdVuelo() {
         return idVuelo;
     }
-
-    // cancelarVuelo
 }
 
 

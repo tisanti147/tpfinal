@@ -21,32 +21,6 @@ public class Usuario {
         this.listaVuelos.add(vuelo);
     }
 
-    /*public Usuario() {
-    }*/
-
-    /*public Usuario(Cliente client)
-    {
-        this.contadorUsuario++;
-        this.id=contadorUsuario;
-        this.nombre="";
-        this.apellido="";
-        this.dni=0;
-        this.edad=0;
-        this.infoVuelo=client;
-    }*/
-
-    /*public Usuario(int dni)
-    {
-        this.contadorUsuario++;
-        this.id=contadorUsuario;
-        this.nombre="";
-        this.apellido="";
-        this.dni=dni;
-        this.edad=0;
-        this.infoVuelo=null;
-    }*/
-
-
     public Usuario(/*int id, */String nombre, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;

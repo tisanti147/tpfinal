@@ -14,7 +14,7 @@ public class Compañia {
     //private List<Provincia> ListaProvincias;
     private ArrayList<Vuelo> ListaVuelos;
 
-    public Compañia(String nombre/*List<Avion> listaAviones, List<Usuario> listaUsuario, List<Provincia> listaProvincias, List<Vuelo> listaVuelos*/) {
+    public Compañia(String nombre) {
         this.nombre = nombre;
         ListaAviones = new ArrayList<Avion>();
         ListaUsuario = new ArrayList<Usuario>();
@@ -115,12 +115,6 @@ public class Compañia {
         this.ListaUsuario.add(user);
     }
 
-    /*public void getListaProvincias() {
-        for (Provincia provincia : ListaProvincias) {
-            System.out.println(provincia.toString());
-        }
-    }*/
-
     public void getListaVuelos() {
         for (Vuelo vuelito : ListaVuelos) {
             System.out.println(vuelito.toString());
@@ -173,8 +167,4 @@ public class Compañia {
     public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
         ListaUsuario = listaUsuario;
     }
-
-    /*public void setListaProvincias(List<Provincia> listaProvincias) {
-        ListaProvincias = listaProvincias;
-    }*/
 }

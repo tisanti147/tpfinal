@@ -53,13 +53,11 @@ public class Main {
         menu.ejecutarMenu(company);
 
         //company.getListaVuelos();
-        company.mostrarListaUsuario();
+        //company.mostrarListaUsuario();
 
         /*DataBase archivo = new DataBase();
         archivo.escribirArchivoCompañia(company);
         archivo.leerArchivoCompañia();*/
 
     }
-
-
 }
