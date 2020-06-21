@@ -102,6 +102,15 @@ public class Compañia {
         }
     }
 
+    public Usuario getUsuarioDNI(long dni){
+        Usuario aux = null;
+        for (Usuario user: ListaUsuario){
+            if(dni == user.getDni())
+                aux = user;
+        }
+        return aux;
+    }
+
     public void addUsuario(Usuario user){
         this.ListaUsuario.add(user);
     }
@@ -129,6 +138,13 @@ public class Compañia {
                 aux = vuelo;
         }
         return aux;
+    }
+
+    public void mostrarVueloConFecha(String fecha){
+        for (Vuelo vuelo: ListaVuelos){
+            if(vuelo.getFecha().equals(fecha))
+                System.out.println(vuelo.toString());
+        }
     }
 
     public void cancelarVuelo(Vuelo vuelo){

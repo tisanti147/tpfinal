@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Usuario.Provincia;
+import Usuario.Usuario;
 import Usuario.Vuelo;
 import com.company.Avion;
 import com.company.Compañia;
@@ -21,27 +22,40 @@ public class Menu {
     }
 
     // Switch construct
-    public void ejecutarMenu(Vuelo vuelo, Compañia company){
+    public void ejecutarMenu(/*Vuelo vuelo, */Compañia company/*, Usuario user*/){
         int IdAvion = 0;
         int aviones;
+        long dni;
+        int idVuelo;
         String fecha;
-        Scanner sc = new Scanner(System.in);
+        Scanner scDNI = new Scanner(System.in);
+        Scanner scFecha = new Scanner(System.in);
         ArrayList<Avion> listaAviones = new ArrayList<Avion>();
+        Vuelo vuelo = new Vuelo();
+        Usuario user = null;
 
 
         System.out.println("|   MENU SELECTION DEMO    |");
         System.out.println("| Options:                 |");
         System.out.println("|        1. Reservar pasaje       |");
         System.out.println("|        2. Registrarse       |");
-        System.out.println("|        3. Exit           |");
+        System.out.println("|        3. Cancelar vuelo           |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
             case 1:
+                System.out.println("Ingrese su DNI: ");
+                do{
+                    dni = scDNI.nextLong();
+                    user = company.getUsuarioDNI(dni);
+                    if (user == null)
+                        System.out.println("No hay usuario registrado con ese DNI");
+                } while (user == null);
+
                 System.out.println("Indicar fecha");
                 System.out.println("Fecha: ");
 
-                fecha = sc.nextLine();
+                fecha = scFecha.nextLine();
 
                 vuelo.setFecha(fecha);
 
@@ -144,17 +158,42 @@ public class Menu {
                 // Guardando el costo en el vuelo
                 vuelo.setCostoTotal(costoTotal);
 
+                // Guardando el vuelo en el usuario y la compañia
+                user.addVuelo(vuelo);
+                company.addVuelo(vuelo);
+
+                break;
             case 2:
                 System.out.println("Ingrese sus datos personales: ");
                 break;
-            /*case 3:
-                System.out.println("Exit selected");
+            case 3:
+                System.out.println("Ingrese su DNI: ");
+
+                do{
+                    dni = scDNI.nextLong();
+                    user = company.getUsuarioDNI(dni);
+                    if (user == null)
+                        System.out.println("No hay usuario registrado con ese DNI");
+                } while (user == null);
+
+                System.out.println("Mostrando sus vuelos reservados");
+                user.mostrarVuelos();
+
+                do{
+                    idVuelo = Keyin.inInt("Ingrese el ID del vuelo que desea cancelar");
+                    if (user.getVueloConID(idVuelo) == null)
+                        System.out.println("No hay vuelos que tengan ese ID");
+                } while (user.getVueloConID(idVuelo) == null);
+
+                user.cancelarVuelo(user.getVueloConID(idVuelo));
+                company.cancelarVuelo(company.getVueloConID(idVuelo));
+
                 break;
             case 4:
                 System.out.println("Probando");
             default:
                 System.out.println("Invalid selection");
-                break; // This break is not really necessary*/
+                break; // This break is not really necessary
         }
     }
 

@@ -83,7 +83,7 @@ public class Usuario {
     }
 
     public Vuelo getVueloConID(int id){
-        Vuelo aux = new Vuelo();
+        Vuelo aux = null;
         for (Vuelo vuelo: listaVuelos) {
             if (vuelo.getIdVuelo() == id)
                 aux = vuelo;

@@ -37,30 +37,28 @@ public class Main {
 
         user1.addVuelo(flight1);
         user1.addVuelo(flight3);
-        user1.cancelarVuelo(user1.getVueloConID(3));
-        user1.mostrarVuelos();
+        //user1.cancelarVuelo(user1.getVueloConID(3));
+        //user1.mostrarVuelos();
 
-        System.out.println(user1.mejorCategoria());
+        //System.out.println(user1.mejorCategoria());
 
         company.addVuelo(flight1);
         company.addVuelo(flight2);
         company.addVuelo(flight3);
 
-        company.cancelarVuelo(company.getVueloConID(2));
+        //System.out.println("FECHA");
+        //company.mostrarVueloConFecha("8 de julio");
+
+        //company.cancelarVuelo(company.getVueloConID(2));
 
         System.out.println("\n\n\n");
-        company.getListaVuelos();
+        //company.getListaVuelos();
 
-        // Generando el vuelo. El menu recibe una variable tipo Vuelo vacia y la compañia cargada
-        Vuelo vuelo = new Vuelo();
+        // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
 
         Menu menu = new Menu();
-        menu.ejecutarMenu(vuelo, company);
+        menu.ejecutarMenu(company);
 
-        user1.addVuelo(vuelo);
-        System.out.println(user1.toString());
-
-        company.addVuelo(vuelo);
         company.getListaVuelos();
 
         /*DataBase archivo = new DataBase();

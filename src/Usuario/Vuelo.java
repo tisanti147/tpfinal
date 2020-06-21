@@ -46,7 +46,7 @@ public class Vuelo {
 
     @Override
     public String toString(){
-        return "ID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
+        return "ID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: \n" + getCostoTotal();
     }
 
     public void setDistances(){
