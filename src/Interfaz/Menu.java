@@ -35,12 +35,11 @@ public class Menu {
         Usuario user = null;
 
 
-        System.out.println("|   MENU SELECTION DEMO    |");
-        System.out.println("| Options:                 |");
-        System.out.println("|        1. Reservar pasaje       |");
-        System.out.println("|        2. Registrarse       |");
-        System.out.println("|        3. Cancelar vuelo           |");
-        System.out.println("4. Mostrar vuelos");
+        System.out.println("|   AERTOTAXI   |");
+        System.out.println("|     1. Reservar pasaje    |");
+        System.out.println("|     2. Registrarse        |");
+        System.out.println("|     3. Cancelar vuelo     |");
+        System.out.println("|     4. Mostrar vuelos     |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
@@ -168,13 +167,14 @@ public class Menu {
                 // Pide los datos personales
                 System.out.println("Ingrese sus datos personales: ");
                 System.out.println("Nombre y apellido: ");
-                user.setNombre(Keyin.inString());
+                String nombre = Keyin.inString();
                 System.out.println("DNI: ");
-                user.setDni(scDNI.nextLong());
-                user.setEdad(Keyin.inInt("Edad: "));
+                long DNI = scDNI.nextLong();
+                int edad = Keyin.inInt("Edad: ");
+                Usuario usuario = new Usuario(nombre, DNI, edad);
 
                 // Guarda el usuario en la compañia
-                company.addUsuario(user);
+                company.addUsuario(usuario);
                 break;
             case 3:
                 System.out.println("Ingrese su DNI: ");

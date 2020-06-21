@@ -51,7 +51,8 @@ public class Main {
         Menu menu = new Menu();
         menu.ejecutarMenu(company);
 
-        company.getListaVuelos();
+        //company.getListaVuelos();
+        company.mostrarListaUsuario();
 
         /*DataBase archivo = new DataBase();
         archivo.escribirArchivoCompañia(company);

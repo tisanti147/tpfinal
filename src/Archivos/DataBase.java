@@ -91,7 +91,7 @@ public class DataBase {
 
     public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException {
         Compañia compania = mapper.readValue(FileCompany, Compañia.class);
-        compania.getListaUsuario();
+        compania.mostrarListaUsuario();
         compania.getListaAviones();
         compania.getListaVuelos();
         //System.out.println(compania.toString());

@@ -82,7 +82,7 @@ public class Compañia {
         return listaPasajeros;
     }
 
-    public void getListaUsuario() {
+    public void mostrarListaUsuario() {
         for (Usuario user : ListaUsuario) {
             System.out.println(user.toString());
         }
