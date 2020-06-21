@@ -5,25 +5,31 @@ import com.company.Compañia;
 import com.company.VueloCompañia;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 
-public class DataBase {
+public class BaseDatos {
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static ObjectMapper mapper = new ObjectMapper();  //Create ObjectMapper object. It is a reusable object. provides functionality for reading and writing JSON
     private File fileUser = new File("Usuario.json");
     private File filePlane = new File("Avion.json");
     private File FileUserflight = new File("UsuarioVuelo.json");
     private File FileCompanyflight = new File("CompaniaVuelo.json");
     private File FileCompany = new File("Compania.json");
 
+////Object to JSON Conversion
+//jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student);
 
-    public DataBase(){};
+    public BaseDatos() {}
 
     //METODOS DE BUSQUEDA, EXISTENCIA Y GUARDADO
 
@@ -70,13 +76,24 @@ public class DataBase {
 
 */
 
-    public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException {
-        Compañia compania = mapper.readValue(FileCompany, Compañia.class);
-        compania.getListaUsuario();
-        compania.getListaAviones();
-        compania.getListaVuelos();
-        //System.out.println(compania.toString());
+    public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException { // Deserialize JSON file into Java object.
+        Compañia compania = new Compañia("compania");
+        if(FileCompany.exists()) {
+            compania = mapper.readValue(FileCompany, Compañia.class);
+            //System.out.println(compania.toString());
+        } else {
+            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+            writer.writeValue(new File("Compania.json"), FileCompany); //Jackson provide inbuilt methods for writing JSON data to JSON file.
+        }
         return compania;
+    }
+
+    public void escribirArchivoCompañia2(Compañia compania) throws JsonGenerationException, JsonMappingException, IOException{ /// Serialize Java object info JSON file.
+        try {
+            mapper.writeValue(FileCompany, compania);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //Metodos de DATOS DE COMPAÑIA, recibe un Object que busca en la base de datos de Compañia.
@@ -98,21 +115,6 @@ public class DataBase {
     }
 
 */
-    private void escribirArchivoCompañia2(Object obj) throws JsonGenerationException, JsonMappingException, IOException{
-        Compañia compania = leerArchivoCompañia();
-        if(obj instanceof VueloCompañia){
-            compania.addVueloCompañia((VueloCompañia) obj);
-        }
-        if(obj instanceof Usuario){
-            compania.addUsuario((Usuario) obj);
-        }
-        if(obj instanceof Avion){
-            compania.addAvion((Avion) obj);
-        }
-        mapper.writeValue(FileCompany,compania);
-    }
-
-
 
 
 
@@ -131,8 +133,8 @@ public class DataBase {
     }
 */
 
-    //trae al nuevo usuario, lo agrega a la lista de usuarios de la compañia, lo agrega en el archivo de usuarios
-    public void guardarNuevoUsuario(Usuario nuevoUsuario) throws IOException {
+  /*  //trae al nuevo usuario, lo agrega a la lista de usuarios de la compañia, lo agrega en el archivo de usuarios
+    public void guardarNuevoUsuario(Compañia nuevoUsuario) throws IOException {
 
         escribirArchivoCompañia2(nuevoUsuario);
         //escribirArchivoUsuario(nuevoUsuario);
@@ -142,7 +144,7 @@ public class DataBase {
     }
 
     //metodo para agregar un vuelo a la lista de vuelos de un usuario
- /*   public void agregarVueloAUsuario(UsuarioVuelo vuelo) throws IOException {
+   public void agregarVueloAUsuario(UsuarioVuelo vuelo) throws IOException {
         Usuario usuario = leerArchivoUsuario();
         usuario.addVuelo(vuelo);
         escribirArchivoUsuario(usuario);

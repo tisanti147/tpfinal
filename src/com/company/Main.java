@@ -1,11 +1,11 @@
 package com.company;
-
-import Interfaz.Keyin;
 import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
-import Archivos.DataBase;
+import Archivos.*;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 import java.io.IOException;
 
@@ -33,6 +33,7 @@ public class Main {
         company.addVuelo(flight1);
         company.addVuelo(flight2);
 
+
         //company.getListaVuelos();
 
         /*String f = Keyin.inString();
@@ -45,17 +46,14 @@ public class Main {
         Vuelo vuelo = new Vuelo();
 
         Menu menu = new Menu();
-        menu.ejecutarMenu(vuelo, company);
-
-        user1.addVuelo(vuelo);
+        //menu.ejecutarMenu(vuelo, company);
+        company.toString();
+       /* user1.addVuelo(vuelo);
         user1.toString();
 
         company.addVuelo(vuelo);
         company.getListaVuelos();
-
-        /*DataBase archivo = new DataBase();
-        archivo.escribirArchivoCompañia(company);
-        archivo.leerArchivoCompañia();*/
+*/
 
     }
 

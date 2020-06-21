@@ -1,7 +1,6 @@
 
 package com.company;
-
-        import Usuario.Usuario;
+import Usuario.Usuario;
         import Usuario.Provincia;
         import Usuario.Vuelo;
 
@@ -13,7 +12,6 @@ public class Compañia {
     private String nombre;
     private ArrayList<Avion> ListaAviones;
     private ArrayList<Usuario> ListaUsuario;
-    //private List<Provincia> ListaProvincias;
     private ArrayList<Vuelo> ListaVuelos;
     private List<VueloCompañia> ListaVueloCompañia;
 
@@ -21,14 +19,13 @@ public class Compañia {
         this.nombre = nombre;
         ListaAviones = new ArrayList<Avion>();
         ListaUsuario = new ArrayList<Usuario>();
-        //ListaProvincias = listaProvincias;
         ListaVuelos = new ArrayList<Vuelo>();
     }
+
 
     public String getNombre() {
         return nombre;
     }
-
 
     // Uso contador para registrar la cantidad de opciones que va a tener el usuario cuando use el menu
     public int getListaAviones() {
@@ -127,4 +124,14 @@ public class Compañia {
     /*public void setListaProvincias(List<Provincia> listaProvincias) {
         ListaProvincias = listaProvincias;
     }*/
+
+    @Override
+    public String toString() {
+        return "DATOS DE LA COMPAÑIA" +
+                "\nNombre: " + getNombre() +
+                "\nLista de Aviones: " + ListaAviones + //revisar
+                "\nLista e Usuario: " + ListaUsuario +
+                "\nListaVuelos: " + ListaVuelos +
+                "\nListaVueloCompañia: " + ListaVueloCompañia;
+    }
 }

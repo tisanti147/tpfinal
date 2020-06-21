@@ -1,9 +1,12 @@
 package Interfaz;
 
+import Archivos.BaseDatos;
 import Usuario.Provincia;
 import Usuario.Vuelo;
 import com.company.Avion;
 import com.company.Compañia;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -13,6 +16,7 @@ public class Menu {
     private int pasajeros;
     private Provincia originProv;
     private Provincia destinationProv;
+    private BaseDatos archivoCompañia = new BaseDatos();
     //private String fecha;
     //private Compañia company;
 
@@ -22,19 +26,26 @@ public class Menu {
 
     // Switch construct
     public void ejecutarMenu(Vuelo vuelo, Compañia company){
+
+
+        try {
+            archivoCompañia.leerArchivoCompañia();
+
         int opcion = 0;
         String fecha;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("|   MENU SELECTION DEMO    |");
-        System.out.println("| Options:                 |");
-        System.out.println("|        1. Reservar pasaje       |");
-        System.out.println("|        2. Option 2       |");
-        System.out.println("|        3. Exit           |");
+        System.out.println("|   MENU SELECTION DEMO             |");
+        System.out.println("| Options:                          |");
+        System.out.println("|        1. Reservar pasaje         |");
+        System.out.println("|        2. Option 2                |");
+        System.out.println("|        3. Exit                    |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
+
 
         switch (swValue) {
             case 1:
+
                 System.out.println("Indicar fecha");
                 System.out.println("Fecha: ");
 
@@ -150,22 +161,34 @@ public class Menu {
 
                 double costoTotal = vuelo.calcularCosto(vuelo.getAvion(), vuelo.getCantPasajeros(), distancia);
 
-                System.out.println("Costo total del vuelo: " + costoTotal);
+                System.out.println("Costo total del vuelo: $" + (int)costoTotal);
 
                 vuelo.setCostoTotal(costoTotal);
 
-            /*case 2:
-                System.out.println("Option 2 selected");
+
+            case 2:
+                System.out.println("Opcion 2 seleccionada");
                 break;
             case 3:
-                System.out.println("Exit selected");
+
+                System.out.println("Gracias por confiar en nosotros. Mucha suerte en estos tiempos dificiles. BUEN VIAJE");
                 break;
-            case 4:
-                System.out.println("Probando");
             default:
-                System.out.println("Invalid selection");
+                System.out.println("Esa opción no es válida. Por favor, ingrese una opción válida.");
                 break; // This break is not really necessary*/
+
         }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                archivoCompañia.escribirArchivoCompañia2(company);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

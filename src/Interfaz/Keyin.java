@@ -51,7 +51,7 @@ public class Keyin {
                 try {
                     return Integer.valueOf(inString().trim()).intValue();
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Not an integer");
+                    System.out.println("Ingrese un valor entero válido");
                 }
             }
         }
