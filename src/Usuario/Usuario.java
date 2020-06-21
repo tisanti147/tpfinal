@@ -61,22 +61,6 @@ public class Usuario {
         return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public long getDni() {
-        return dni;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
     public void mostrarVuelos(){
         for (Vuelo vuelo: listaVuelos)
             System.out.println(vuelo.toString());
@@ -106,5 +90,33 @@ public class Usuario {
                 categoria = "Oro";
         }
         return categoria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public long getDni() {
+        return dni;
+    }
+
+    public void setDni(long dni) {
+        this.dni = dni;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getId() {
+        return id;
     }
 }

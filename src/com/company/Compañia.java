@@ -140,6 +140,15 @@ public class Compañia {
         return aux;
     }
 
+    public ArrayList<Vuelo> getVuelosConFecha (String fecha){
+        ArrayList<Vuelo> aux = new ArrayList<Vuelo>();
+        for (Vuelo vuelo: ListaVuelos){
+            if(fecha.equals(vuelo.getFecha()))
+                aux.add(vuelo);
+        }
+        return aux;
+    }
+
     public void mostrarVueloConFecha(String fecha){
         for (Vuelo vuelo: ListaVuelos){
             if(vuelo.getFecha().equals(fecha))

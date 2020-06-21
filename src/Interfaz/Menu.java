@@ -40,6 +40,7 @@ public class Menu {
         System.out.println("|        1. Reservar pasaje       |");
         System.out.println("|        2. Registrarse       |");
         System.out.println("|        3. Cancelar vuelo           |");
+        System.out.println("4. Mostrar vuelos");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
@@ -70,7 +71,6 @@ public class Menu {
 
                 // Se guarda el origen del vuelo
                 originProv = Provincia.valueOf(origen);
-                System.out.println(originProv);
                 vuelo.setOrigen(originProv);
 
                 switch (origen) {
@@ -108,8 +108,6 @@ public class Menu {
                 if (origen == 4 && destino == 3)
                     destinationProv = Provincia.SANTIAGO;
 
-                System.out.println(destinationProv);
-
                 // Se guarda el destino del vuelo
                 vuelo.setDestino(destinationProv);
 
@@ -122,6 +120,9 @@ public class Menu {
                     if (listaAviones.size() == 0)
                         System.out.println("No tenemos aviones disponibles con esa capacidad de pasajeros.");
                 }while (listaAviones.size() == 0);
+
+                // Guarda los pasajeros en el vuelo
+                vuelo.setCantPasajeros(pasajeros);
 
                 // Muestra los aviones disponibles tomando en cuenta la fecha
                 System.out.println("Aviones disponibles: ");
@@ -139,7 +140,7 @@ public class Menu {
                     if (company.comprobarIdAvion(IdAvion, fecha))
                         System.out.println("El avion con esa ID no está disponible en la fecha ingresada");
                     if (IdAvion < 1 || IdAvion > aviones)
-                        System.out.println("No existen aviones con esa numero de ID");
+                        System.out.println("No existen aviones con ese numero de ID");
                 }while (company.comprobarIdAvion(IdAvion, fecha) || IdAvion < 1 || IdAvion >aviones);
 
                 // Registrando avion en el vuelo
@@ -164,7 +165,16 @@ public class Menu {
 
                 break;
             case 2:
+                // Pide los datos personales
                 System.out.println("Ingrese sus datos personales: ");
+                System.out.println("Nombre y apellido: ");
+                user.setNombre(Keyin.inString());
+                System.out.println("DNI: ");
+                user.setDni(scDNI.nextLong());
+                user.setEdad(Keyin.inInt("Edad: "));
+
+                // Guarda el usuario en la compañia
+                company.addUsuario(user);
                 break;
             case 3:
                 System.out.println("Ingrese su DNI: ");
@@ -194,7 +204,20 @@ public class Menu {
 
                 break;
             case 4:
-                System.out.println("Probando");
+                System.out.println("Ingrese la fecha: ");
+                ArrayList<Vuelo> aux = new ArrayList<Vuelo>();
+                fecha = scFecha.nextLine();
+                aux = company.getVuelosConFecha(fecha);
+                if (aux.size() == 0) {
+                    System.out.println("No hay vuelos programados para la fecha ingresada");
+                    break;
+                }
+                else {
+                    for (Vuelo flight : aux)
+                        System.out.println(flight.toString());
+                }
+                break;
+
             default:
                 System.out.println("Invalid selection");
                 break; // This break is not really necessary
