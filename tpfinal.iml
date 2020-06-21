@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-annotations-2.11.0" />
+          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-annotations-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-core-2.11.0" />
+          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-core-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,7 +37,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ramaLucia/jackson-databind-2.11.0" />
+          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-databind-2.11.0" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

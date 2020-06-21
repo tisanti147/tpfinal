@@ -5,7 +5,7 @@ import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
-import Archivos.DataBase;
+import Archivos.BaseDatos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,9 +55,9 @@ public class Main {
         //company.getListaVuelos();
         //company.mostrarListaUsuario();
 
-        /*DataBase archivo = new DataBase();
-        archivo.escribirArchivoCompañia(company);
-        archivo.leerArchivoCompañia();*/
+        BaseDatos archivo = new BaseDatos();
+        archivo.escribirArchivoCompañia2(company);
+        archivo.leerArchivoCompañia();
 
     }
 }
