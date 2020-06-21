@@ -37,22 +37,10 @@ public class Main {
 
         user1.addVuelo(flight1);
         user1.addVuelo(flight3);
-        //user1.cancelarVuelo(user1.getVueloConID(3));
-        //user1.mostrarVuelos();
-
-        //System.out.println(user1.mejorCategoria());
 
         company.addVuelo(flight1);
         company.addVuelo(flight2);
         company.addVuelo(flight3);
-
-        //System.out.println("FECHA");
-        //company.mostrarVueloConFecha("8 de julio");
-
-        //company.cancelarVuelo(company.getVueloConID(2));
-
-        System.out.println("\n\n\n");
-        //company.getListaVuelos();
 
         // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
 

@@ -169,6 +169,7 @@ public class Menu {
             case 3:
                 System.out.println("Ingrese su DNI: ");
 
+                // Comprueba que el DNI ingresado este registrado en algun usuario
                 do{
                     dni = scDNI.nextLong();
                     user = company.getUsuarioDNI(dni);
@@ -176,15 +177,18 @@ public class Menu {
                         System.out.println("No hay usuario registrado con ese DNI");
                 } while (user == null);
 
+                // Muestra los vuelos cargados en el usuario
                 System.out.println("Mostrando sus vuelos reservados");
                 user.mostrarVuelos();
 
+                // Comprueba que el ID ingresado pertenezca a algun vuelo
                 do{
                     idVuelo = Keyin.inInt("Ingrese el ID del vuelo que desea cancelar");
                     if (user.getVueloConID(idVuelo) == null)
                         System.out.println("No hay vuelos que tengan ese ID");
                 } while (user.getVueloConID(idVuelo) == null);
 
+                // Elimina el vuelo en el arreglo de Usuario y Compañia
                 user.cancelarVuelo(user.getVueloConID(idVuelo));
                 company.cancelarVuelo(company.getVueloConID(idVuelo));
 
