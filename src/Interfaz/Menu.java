@@ -31,7 +31,7 @@ public class Menu {
         Scanner scDNI = new Scanner(System.in);
         Scanner scFecha = new Scanner(System.in);
         ArrayList<Avion> listaAviones = new ArrayList<Avion>();
-        Vuelo vuelo = new Vuelo();
+        Vuelo vuelo = null;//new Vuelo();
         Usuario user = null;
 
 
@@ -132,7 +132,7 @@ public class Menu {
 
                 // El usuario ingresa el ID del avion que quiere reservar
                 System.out.println("Ingrese el ID del avion que desea abordar");
-                aviones = company.getListaAviones(); // Esto comprueba la cantidad de aviones que hay
+                aviones = company.cantListaAviones(); // Esto comprueba la cantidad de aviones que hay
 
                 // Comprueba que el ID ingresado no sea de un avion que no existe o que ya esta reservado
                 do{
@@ -237,12 +237,13 @@ public class Menu {
                         break;
                     case 2:
                         System.out.println("Gastos totales: ");
-                        System.out.println(user.getGastosTotales());
+                        System.out.println(user.gastosTotales());
                         break;
                     case 3:
                         System.out.println("Membresía: " + user.mejorCategoria());
                         break;
                 }
+                break;
             default:
                 System.out.println("Invalid selection");
                 break; // This break is not really necessary

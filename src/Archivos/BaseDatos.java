@@ -77,10 +77,11 @@ public class BaseDatos {
 */
 
     public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException { // Deserialize JSON file into Java object.
-        Compañia compania = new Compañia("compania");
+        //Compañia compania = new Compañia("compania");
+        Compañia compania = null;
         if(FileCompany.exists()) {
             compania = mapper.readValue(FileCompany, Compañia.class);
-            //System.out.println(compania.toString());
+            compania.mostrarListaUsuario();
         } else {
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
             writer.writeValue(new File("Compania.json"), FileCompany); //Jackson provide inbuilt methods for writing JSON data to JSON file.
@@ -89,6 +90,7 @@ public class BaseDatos {
     }
 
     public void escribirArchivoCompañia2(Compañia compania) throws JsonGenerationException, JsonMappingException, IOException{ /// Serialize Java object info JSON file.
+        //FileCompany = new File("Compania.json");
         try {
             mapper.writeValue(FileCompany, compania);
         } catch (IOException e) {

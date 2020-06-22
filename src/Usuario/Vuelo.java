@@ -4,12 +4,13 @@ import com.company.Avion;
 import com.company.Bronce;
 import Usuario.Provincia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Vuelo {
+public class Vuelo implements Serializable {
     private int idVuelo;
     private static int contador = 0;
     private String fecha;
@@ -20,10 +21,10 @@ public class Vuelo {
     private Provincia destino;
     private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
-    public Vuelo(){
+    /*public Vuelo(){
         contador++;
         this.idVuelo = contador;
-    }
+    }*/
 
     public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal, Provincia origen, Provincia destino){
         contador++;

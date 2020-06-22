@@ -1,6 +1,8 @@
 package com.company;
 
-public class Plata extends Avion implements catering{
+import java.io.Serializable;
+
+public class Plata extends Avion implements catering, Serializable {
     public Plata (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, TipoPropulsion propulsion){
         super(capacidadCombustible, costoPorKM, capacidadMaxPasajeros, velocidadMax, 4000, propulsion);
     }

@@ -1,6 +1,8 @@
 package com.company;
 
-public class Oro extends Avion implements catering{
+import java.io.Serializable;
+
+public class Oro extends Avion implements catering, Serializable {
     private boolean conexionWifi;
 
     public Oro (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, TipoPropulsion propulsion, boolean conexionWifi){

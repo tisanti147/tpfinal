@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../json-simple-1.1.1.zip!/" />
+          <root url="jar://$MODULE_DIR$/lib/jackson-annotations-2.9.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-annotations-2.11.0" />
+          <root url="jar://$MODULE_DIR$/lib/jackson-core-2.9.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,16 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-core-2.11.0" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../../tpfinal/jackson-databind-2.11.0" />
+          <root url="jar://$MODULE_DIR$/lib/jackson-databind-2.9.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
