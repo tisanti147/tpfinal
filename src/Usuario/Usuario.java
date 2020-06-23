@@ -24,7 +24,7 @@ public class Usuario implements Serializable {
         this.listaVuelos.add(vuelo);
     }
 
-    public Usuario(/*int id, */String nombre, long dni, int edad) {
+    public Usuario(String nombre, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;
         this.nombre = nombre;
@@ -35,7 +35,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString(){
-        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad();
+        return "\nID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad();
     }
 
     public void mostrarVuelos(){

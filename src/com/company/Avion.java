@@ -12,8 +12,6 @@ public abstract class Avion implements Serializable {
     private int tarifaAvion;
     private TipoPropulsion propulsion;
 
-    /*public Avion() {
-    }*/
 
     public Avion (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, int tarifaAvion, TipoPropulsion propulsion){
         this.contador++;

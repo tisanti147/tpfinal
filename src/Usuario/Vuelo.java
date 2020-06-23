@@ -21,10 +21,10 @@ public class Vuelo implements Serializable {
     private Provincia destino;
     private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
-    /*public Vuelo(){
+    public Vuelo(){
         contador++;
         this.idVuelo = contador;
-    }*/
+    }
 
     public Vuelo (String fecha, int cantPasajeros, Avion avion, double costoTotal, Provincia origen, Provincia destino){
         contador++;
@@ -47,7 +47,7 @@ public class Vuelo implements Serializable {
 
     @Override
     public String toString(){
-        return "\nID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
+        return "\nID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\nCosto total: " + getCostoTotal();
     }
 
     public void setDistances(){
@@ -64,8 +64,6 @@ public class Vuelo implements Serializable {
                 (distanciaVuelo.containsKey(destiny+" "+origin))? distanciaVuelo.get(destiny+" "+origin) : 0);
         return distance;
     }
-
-    //(Cantidad de kms * Costo del km) + (cantidad de pasajeros * 3500) + (Tarifa del tipo de avión)
 
     public int calcularCosto (Avion avion, int pasajeros, int distancia){
         return (distancia * avion.getCostoPorKM()) + (pasajeros * 3500) + avion.getTarifaAvion();

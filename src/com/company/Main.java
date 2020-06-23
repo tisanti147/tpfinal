@@ -50,9 +50,17 @@ public class Main implements Serializable {
         company.addVuelo(flight3);
         company.addVuelo(flight4);
 
+        // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
+
+        Menu menu = new Menu();
+        menu.ejecutarMenu(company);
+
+        company.mostrarListaVuelos();
+        company.mostrarListaUsuario();
+        company.mostrarListaAviones();
 
 
-
+        /*
         String path = "D:\\USUARIOS\\Desktop\\Santi\\tpfinal\\Compañia.txt";
 
         File myFile = new File(path);
@@ -91,8 +99,8 @@ public class Main implements Serializable {
 //                LECTURA EN JACKSON
                 file = new File("Compañia.json");
                 //Compañia[] comp = mapper.readValue(file, Compañia[].class);
-                ArrayList<Compañia> comp;
-                comp = mapper.readValue(file, new TypeReference<ArrayList<Compañia>>(){});
+                ArrayList<Compañia> comp = mapper.readValue(file, new TypeReference<ArrayList<Compañia>>(){});
+                //Collection<Compañia> comp = mapper.readValue("Compañia.json", new TypeReference<Collection<Compañia>>() { });
                 System.out.println("JACKSON:\n" + comp.toString());
                 //comp.mostrarListaUsuario();
 
@@ -102,33 +110,8 @@ public class Main implements Serializable {
             }
         } else {
             System.out.println("No se encuentra el archivo.");
-        }
+        }*/
 
-
-
-
-
-
-
-        /*File archivo = new File("Usuario.json");
-        ObjectMapper mapper = new ObjectMapper();
-
-        mapper.writeValue(archivo, user1);
-
-        Usuario us = mapper.readValue(archivo, Usuario.class);
-        System.out.println(us.toString());*/
-
-
-
-
-
-        // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
-
-        /*Menu menu = new Menu();
-        menu.ejecutarMenu(company);
-
-        //company.getListaVuelos();
-        company.mostrarListaUsuario();*/
 
     }
 }

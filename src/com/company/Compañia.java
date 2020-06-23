@@ -27,10 +27,14 @@ public class Compañia implements Serializable {
         int contador = 0;
         for (Avion avioncito : ListaAviones) {
             contador++;
-            /*System.out.println(contador + ". ");
-            System.out.println(avioncito.toString());*/
         }
         return contador;
+    }
+
+    public void mostrarListaAviones() {
+        for (Avion avioncito : ListaAviones) {
+            System.out.println(avioncito.toString());
+        }
     }
 
     public void registrarAvionEnVuelo(Vuelo vuelo, int id){
@@ -51,11 +55,19 @@ public class Compañia implements Serializable {
         }
     }
 
-    public boolean comprobarIdAvion(int id, String fecha){
+    public boolean comprobarIdAvionFecha(int id, String fecha){
         for (Vuelo vuelo: ListaVuelos){
             if(fecha.equals(vuelo.getFecha()) && id == vuelo.getAvion().getId()) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean comprobarAvionPasajeros(ArrayList<Avion> lista, int ID){
+        for (Avion avion: lista){
+            if (ID == avion.getId())
+                return true;
         }
         return false;
     }
