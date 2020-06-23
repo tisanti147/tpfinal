@@ -35,13 +35,13 @@ public class Menu {
         Usuario user = null;
 
 
-        System.out.println("|          AEROTAXI          |");
-        System.out.println("|  1. Reservar pasaje         |");
-        System.out.println("|  2. Registrarse             |");
-        System.out.println("|  3. Cancelar vuelo          |");
-        System.out.println("|  4. Mostrar vuelos          |");
-        System.out.println("|  5. Informacion de usuario  |");
-        System.out.println("|  6. Salir                   |");
+        System.out.println("|            AEROTAXI            |");
+        System.out.println("|    1. Reservar pasaje          |");
+        System.out.println("|    2. Registrarse              |");
+        System.out.println("|    3. Cancelar vuelo           |");
+        System.out.println("|    4. Mostrar vuelos           |");
+        System.out.println("|    5. Informacion de usuario   |");
+        System.out.println("|    6. Salir                    |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
