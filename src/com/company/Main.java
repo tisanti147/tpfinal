@@ -25,7 +25,7 @@ public class Main implements Serializable {
         // Cargando un usuario
         Usuario user1 = new Usuario("Santiago Martinez", 41928128, 20);
 
-        // Creando la compañia con los aviones y usuario
+        // Creando la compañia y cargandola con los aviones y usuario
         Compañia company = new Compañia("Tisanti");
 
         company.addAvion(avion1);
@@ -35,7 +35,7 @@ public class Main implements Serializable {
 
         company.addUsuario(user1);
 
-        // Creando vuelos y cargandolos en compañia
+        // Creando vuelos y cargandolos en compañia y usuario
         Vuelo flight1 = new Vuelo("23 de mayo", 3, avion1, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight2 = new Vuelo("8 de julio", 3, avion2, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight3 = new Vuelo("2 de abril", 2, avion3, 5000, Provincia.CORDOBA, Provincia.MONTEVIDEO);

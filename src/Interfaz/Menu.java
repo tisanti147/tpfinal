@@ -186,7 +186,7 @@ public class Menu {
                     System.out.println("Ya hay un usuario registrado con ese DNI.");
                     break;
                 }
-                
+
                 System.out.println("Nombre y apellido: ");
                 String nombre = Keyin.inString();
                 int edad = Keyin.inInt("Edad: ");
