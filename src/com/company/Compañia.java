@@ -131,7 +131,7 @@ public class Compañia implements Serializable {
     }
 
     public Vuelo getVueloConID(int id){
-        Vuelo aux = null;//new Vuelo();
+        Vuelo aux = null;
         for (Vuelo vuelo: ListaVuelos) {
             if (vuelo.getIdVuelo() == id)
                 aux = vuelo;

@@ -30,7 +30,7 @@ public class Menu {
         String fecha;
         Scanner scDNI = new Scanner(System.in);
         Scanner scFecha = new Scanner(System.in);
-        ArrayList<Avion> listaAviones = new ArrayList<Avion>();
+        ArrayList<Avion> listaAviones;
         Vuelo vuelo = new Vuelo();
         Usuario user = null;
 
