@@ -51,13 +51,18 @@ public class Main implements Serializable {
         company.addVuelo(flight4);
 
         // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
+        BaseDatos db = new BaseDatos();
+        //Compañia comp = BaseDatos.levantarCompania();
 
         Menu menu = new Menu();
         menu.ejecutarMenu(company);
 
-        company.mostrarListaVuelos();
+
+        db.guardarCompania(company);
+
+        /*company.mostrarListaVuelos();
         company.mostrarListaUsuario();
-        company.mostrarListaAviones();
+        company.mostrarListaAviones();*/
 
 
         /*

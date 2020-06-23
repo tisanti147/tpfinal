@@ -1,13 +1,10 @@
 package Usuario;
 
 import com.company.Avion;
-import com.company.Bronce;
-import Usuario.Provincia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Vuelo implements Serializable {
