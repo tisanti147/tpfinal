@@ -1,6 +1,8 @@
 package com.company;
 
-public class Oro extends Avion implements catering{
+import java.io.Serializable;
+
+public class Oro extends Avion implements catering, Serializable {
     private boolean conexionWifi;
 
     public Oro (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, TipoPropulsion propulsion, boolean conexionWifi){
@@ -10,7 +12,7 @@ public class Oro extends Avion implements catering{
 
     @Override
     public String toString(){
-        return "ID del avion: " + getId() + "\nCapacidad de combustible: " + getCapacidadCombustible() + "\nCosto por kilometro: " + getCostoPorKM() + "\nCapacidad de pasajeros: " + getCapacidadMaxPasajeros() + "\nVelocidad maxima: " + getVelocidadMax() + "\nTarifa: " + getTarifaAvion() + "\nTipo de propulsion: " + getPropulsion() + "\nConexion a WiFi: \n" + isConexionWifi();
+        return "ID del avion: " + getId() + "\nCapacidad de combustible: " + getCapacidadCombustible() + "\nCosto por kilometro: " + getCostoPorKM() + "\nCapacidad de pasajeros: " + getCapacidadMaxPasajeros() + "\nVelocidad maxima: " + getVelocidadMax() + "\nTarifa: " + getTarifaAvion() + "\nTipo de propulsion: " + getPropulsion() + "\nConexion a WiFi: " + isConexionWifi();
     }
 
     @Override

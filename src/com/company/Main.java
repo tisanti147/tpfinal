@@ -6,11 +6,14 @@ import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
 import Archivos.BaseDatos;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class Main {
+public class Main implements Serializable {
 
     public static void main(String[] args) throws IOException {
         // Creando aviones
@@ -22,7 +25,7 @@ public class Main {
         // Cargando un usuario
         Usuario user1 = new Usuario("Santiago Martinez", 41928128, 20);
 
-        // Creando la compañia con los aviones y usuario
+        // Creando la compañia y cargandola con los aviones y usuario
         Compañia company = new Compañia("Tisanti");
 
         company.addAvion(avion1);
@@ -32,7 +35,7 @@ public class Main {
 
         company.addUsuario(user1);
 
-        // Creando vuelos y cargandolos en compañia
+        // Creando vuelos y cargandolos en compañia y usuario
         Vuelo flight1 = new Vuelo("23 de mayo", 3, avion1, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight2 = new Vuelo("8 de julio", 3, avion2, 1000, Provincia.BSAS, Provincia.CORDOBA);
         Vuelo flight3 = new Vuelo("2 de abril", 2, avion3, 5000, Provincia.CORDOBA, Provincia.MONTEVIDEO);
@@ -52,12 +55,63 @@ public class Main {
         Menu menu = new Menu();
         menu.ejecutarMenu(company);
 
-        //company.getListaVuelos();
-        //company.mostrarListaUsuario();
+        company.mostrarListaVuelos();
+        company.mostrarListaUsuario();
+        company.mostrarListaAviones();
 
-        BaseDatos archivo = new BaseDatos();
-        archivo.escribirArchivoCompañia2(company);
-        archivo.leerArchivoCompañia();
+
+        /*
+        String path = "D:\\USUARIOS\\Desktop\\Santi\\tpfinal\\Compañia.txt";
+
+        File myFile = new File(path);
+
+        if (myFile.exists()) {
+
+            try {
+
+                // Escritura
+                FileOutputStream fileOutputStream = new FileOutputStream(myFile);
+
+                ObjectOutputStream objOutputStream = new ObjectOutputStream(fileOutputStream);
+
+                objOutputStream.writeObject(company);
+
+                objOutputStream.close();
+
+//              ESCRITURA EN JACKSON
+                File file = new File("Compañia.json");
+                ObjectMapper mapper = new ObjectMapper();
+                //Object to JSON in file
+                mapper.writeValue(file, company);
+//
+
+                //Lectura
+                FileInputStream fileInputStream = new FileInputStream(myFile);
+
+                ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
+
+                Object aux = objInputStream.readObject();
+
+                System.out.println("OBJECTINPUTSTREAM:\n" + aux.toString());
+
+                objInputStream.close();
+
+//                LECTURA EN JACKSON
+                file = new File("Compañia.json");
+                //Compañia[] comp = mapper.readValue(file, Compañia[].class);
+                ArrayList<Compañia> comp = mapper.readValue(file, new TypeReference<ArrayList<Compañia>>(){});
+                //Collection<Compañia> comp = mapper.readValue("Compañia.json", new TypeReference<Collection<Compañia>>() { });
+                System.out.println("JACKSON:\n" + comp.toString());
+                //comp.mostrarListaUsuario();
+
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("No se pudo leer/escribir el archivo: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No se encuentra el archivo.");
+        }*/
+
 
     }
 }

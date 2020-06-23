@@ -39,7 +39,7 @@ public enum Provincia {
     }
 
     // Asigna un valor numerico a cada provincia para facilitar el menu.
-    // Por eso agregue la variable de num en la clase
+    // Por eso hay una variable de num en la clase
 
     static {
         for (Provincia prov : Provincia.values()) {

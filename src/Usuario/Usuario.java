@@ -5,10 +5,13 @@ import com.company.Bronce;
 import com.company.Oro;
 import com.company.Plata;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private int id;
     private String nombre;
@@ -21,7 +24,7 @@ public class Usuario {
         this.listaVuelos.add(vuelo);
     }
 
-    public Usuario(/*int id, */String nombre, long dni, int edad) {
+    public Usuario(String nombre, long dni, int edad) {
         this.contadorUsuario++;
         this.id = contadorUsuario;
         this.nombre = nombre;
@@ -32,7 +35,7 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "ID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad() + "\nCategoria mas alta: ";
+        return "\nID de usuario: " + getId() + "\nNombre y apellido: " + getNombre() + "\nDNI: " + getDni() + "\nEdad: " + getEdad();
     }
 
     public void mostrarVuelos(){
@@ -73,7 +76,7 @@ public class Usuario {
         return categoria;
     }
 
-    public int getGastosTotales(){
+    public int gastosTotales(){
         int gastos = 0;
         for (Vuelo vuelo: listaVuelos){
             gastos += vuelo.getCostoTotal();

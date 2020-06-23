@@ -4,12 +4,13 @@ import com.company.Avion;
 import com.company.Bronce;
 import Usuario.Provincia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Vuelo {
+public class Vuelo implements Serializable {
     private int idVuelo;
     private static int contador = 0;
     private String fecha;
@@ -46,7 +47,7 @@ public class Vuelo {
 
     @Override
     public String toString(){
-        return "\nID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\n\nCosto total: " + getCostoTotal();
+        return "\nID del vuelo: " + getIdVuelo() + "\nFecha del vuelo: " + getFecha() + "\nPasajeros que abordan: " + getCantPasajeros() + "\nLugar de origen: " + getOrigen().getNombre() + "\nLugar de destino: " + getDestino().getNombre() + "\n\nINFORMACIÓN DEL AVIÓN:\n" + avion.toString() + "\nCosto total: " + getCostoTotal();
     }
 
     public void setDistances(){
@@ -63,8 +64,6 @@ public class Vuelo {
                 (distanciaVuelo.containsKey(destiny+" "+origin))? distanciaVuelo.get(destiny+" "+origin) : 0);
         return distance;
     }
-
-    //(Cantidad de kms * Costo del km) + (cantidad de pasajeros * 3500) + (Tarifa del tipo de avión)
 
     public int calcularCosto (Avion avion, int pasajeros, int distancia){
         return (distancia * avion.getCostoPorKM()) + (pasajeros * 3500) + avion.getTarifaAvion();

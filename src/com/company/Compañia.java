@@ -5,37 +5,36 @@ import Usuario.Provincia;
 import Usuario.Vuelo;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Compañia {
+public class Compañia implements Serializable {
     private String nombre;
     private ArrayList<Avion> ListaAviones;
     private ArrayList<Usuario> ListaUsuario;
-    //private List<Provincia> ListaProvincias;
     private ArrayList<Vuelo> ListaVuelos;
 
     public Compañia(String nombre) {
         this.nombre = nombre;
         ListaAviones = new ArrayList<Avion>();
         ListaUsuario = new ArrayList<Usuario>();
-        //ListaProvincias = listaProvincias;
         ListaVuelos = new ArrayList<Vuelo>();
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
 
     // Uso contador para registrar la cantidad de opciones que va a tener el usuario cuando use el menu
-    public int getListaAviones() {
+    public int cantListaAviones() {
         int contador = 0;
         for (Avion avioncito : ListaAviones) {
             contador++;
-            /*System.out.println(contador + ". ");
-            System.out.println(avioncito.toString());*/
         }
         return contador;
+    }
+
+    public void mostrarListaAviones() {
+        for (Avion avioncito : ListaAviones) {
+            System.out.println(avioncito.toString());
+        }
     }
 
     public void registrarAvionEnVuelo(Vuelo vuelo, int id){
@@ -56,11 +55,19 @@ public class Compañia {
         }
     }
 
-    public boolean comprobarIdAvion(int id, String fecha){
+    public boolean comprobarIdAvionFecha(int id, String fecha){
         for (Vuelo vuelo: ListaVuelos){
             if(fecha.equals(vuelo.getFecha()) && id == vuelo.getAvion().getId()) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean comprobarAvionPasajeros(ArrayList<Avion> lista, int ID){
+        for (Avion avion: lista){
+            if (ID == avion.getId())
+                return true;
         }
         return false;
     }
@@ -115,7 +122,7 @@ public class Compañia {
         this.ListaUsuario.add(user);
     }
 
-    public void getListaVuelos() {
+    public void mostrarListaVuelos() {
         for (Vuelo vuelito : ListaVuelos) {
             System.out.println(vuelito.toString());
         }
@@ -126,7 +133,7 @@ public class Compañia {
     }
 
     public Vuelo getVueloConID(int id){
-        Vuelo aux = new Vuelo();
+        Vuelo aux = null;//new Vuelo();
         for (Vuelo vuelo: ListaVuelos) {
             if (vuelo.getIdVuelo() == id)
                 aux = vuelo;
@@ -156,12 +163,33 @@ public class Compañia {
 
     //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
     // de vuelos que le pases por parametro al final de la lista de vuelos existente ya dentro de la compania
-    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
-        ListaVuelos = listaVuelos;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ArrayList<Avion> getListaAviones() {
+        return ListaAviones;
+    }
+
+    public ArrayList<Usuario> getListaUsuario() {
+        return ListaUsuario;
+    }
+
+    public ArrayList<Vuelo> getListaVuelos() {
+        return ListaVuelos;
     }
 
     public void setListaAviones(ArrayList<Avion> listaAviones) {
         ListaAviones = listaAviones;
+    }
+
+    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
+        ListaVuelos = listaVuelos;
     }
 
     public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
