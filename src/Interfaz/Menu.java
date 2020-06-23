@@ -22,7 +22,7 @@ public class Menu {
     }
 
     // Switch construct
-    public void ejecutarMenu(/*Vuelo vuelo, */Compañia company/*, Usuario user*/){
+    public void ejecutarMenu(Compañia company){
         int IdAvion = 0;
         int aviones;
         long dni;
@@ -30,17 +30,18 @@ public class Menu {
         String fecha;
         Scanner scDNI = new Scanner(System.in);
         Scanner scFecha = new Scanner(System.in);
-        ArrayList<Avion> listaAviones = new ArrayList<Avion>();
+        ArrayList<Avion> listaAviones;
         Vuelo vuelo = new Vuelo();
         Usuario user = null;
 
 
-        System.out.println("|          AERTOTAXI          |");
-        System.out.println("|  1. Reservar pasaje         |");
-        System.out.println("|  2. Registrarse             |");
-        System.out.println("|  3. Cancelar vuelo          |");
-        System.out.println("|  4. Mostrar vuelos          |");
-        System.out.println("|  5. Informacion de usuario  |");
+        System.out.println("|            AEROTAXI            |");
+        System.out.println("|    1. Reservar pasaje          |");
+        System.out.println("|    2. Registrarse              |");
+        System.out.println("|    3. Cancelar vuelo           |");
+        System.out.println("|    4. Mostrar vuelos           |");
+        System.out.println("|    5. Informacion de usuario   |");
+        System.out.println("|    6. Salir                    |");
         swValue = Keyin.inInt(" Seleccionar opcion: ");
 
         switch (swValue) {
@@ -173,6 +174,8 @@ public class Menu {
                 user.addVuelo(vuelo);
                 company.addVuelo(vuelo);
 
+                ejecutarMenu(company);
+
                 break;
             case 2:
                 // Pide los datos personales
@@ -184,6 +187,7 @@ public class Menu {
                 user = company.getUsuarioDNI(DNI);
                 if (user != null) {
                     System.out.println("Ya hay un usuario registrado con ese DNI.");
+                    ejecutarMenu(company);
                     break;
                 }
 
@@ -196,6 +200,8 @@ public class Menu {
 
                 // Guarda el usuario en la compañia
                 company.addUsuario(usuario);
+
+                ejecutarMenu(company);
                 break;
             case 3:
                 System.out.println("Ingrese su DNI: ");
@@ -223,6 +229,7 @@ public class Menu {
                 user.cancelarVuelo(user.getVueloConID(idVuelo));
                 company.cancelarVuelo(company.getVueloConID(idVuelo));
 
+                ejecutarMenu(company);
                 break;
             case 4:
                 System.out.println("Ingrese la fecha: ");
@@ -235,12 +242,14 @@ public class Menu {
                 // Comprueba que haya vuelos en la fecha ingresada
                 if (aux.size() == 0) {
                     System.out.println("No hay vuelos programados para la fecha ingresada.");
+                    ejecutarMenu(company);
                     break;
                 }
                 else {
                     for (Vuelo flight: aux)
                         System.out.println(flight.toString()); // Los muestra a traves del arreglo creado
                 }
+                ejecutarMenu(company);
                 break;
             case 5:
                 System.out.println("Ingrese su DNI: ");
@@ -250,6 +259,7 @@ public class Menu {
                 user = company.getUsuarioDNI(dni);
                 if (user == null) {
                     System.out.println("No hay usuario registrado con ese DNI.");
+                    ejecutarMenu(company);
                     break;
                 }
 
@@ -270,6 +280,10 @@ public class Menu {
                         System.out.println("Membresía: " + user.mejorCategoria());
                         break;
                 }
+                ejecutarMenu(company);
+                break;
+            case 6:
+                System.out.println("¡Gracias por confiar en AEROTAXI!");
                 break;
             default:
                 System.out.println("Opción inválida.");

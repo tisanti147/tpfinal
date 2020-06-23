@@ -1,10 +1,8 @@
 package com.company;
 
 import Usuario.Usuario;
-import Usuario.Provincia;
 import Usuario.Vuelo;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -133,7 +131,7 @@ public class Compañia implements Serializable {
     }
 
     public Vuelo getVueloConID(int id){
-        Vuelo aux = null;//new Vuelo();
+        Vuelo aux = null;
         for (Vuelo vuelo: ListaVuelos) {
             if (vuelo.getIdVuelo() == id)
                 aux = vuelo;
@@ -160,9 +158,6 @@ public class Compañia implements Serializable {
     public void cancelarVuelo(Vuelo vuelo){
         ListaVuelos.remove(vuelo);
     }
-
-    //El metodo set de las listas para funcionar de forma optima, deberia tener una funcion que agregue la lista
-    // de vuelos que le pases por parametro al final de la lista de vuelos existente ya dentro de la compania
 
     public String getNombre() {
         return nombre;

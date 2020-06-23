@@ -1,15 +1,11 @@
 package Usuario;
 
-import com.company.Avion;
 import com.company.Bronce;
 import com.company.Oro;
 import com.company.Plata;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Usuario implements Serializable {
 
@@ -20,8 +16,8 @@ public class Usuario implements Serializable {
     private ArrayList<Vuelo> listaVuelos;
     private static int contadorUsuario=0;
 
-    public void addVuelo(Vuelo vuelo){
-        this.listaVuelos.add(vuelo);
+    public Usuario(){
+
     }
 
     public Usuario(String nombre, long dni, int edad) {
@@ -31,6 +27,10 @@ public class Usuario implements Serializable {
         this.dni = dni;
         this.edad = edad;
         listaVuelos = new ArrayList<Vuelo>();
+    }
+
+    public void addVuelo(Vuelo vuelo){
+        this.listaVuelos.add(vuelo);
     }
 
     @Override

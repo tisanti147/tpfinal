@@ -1,203 +1,53 @@
 package Archivos;
-import Usuario.*;
 import com.company.Compañia;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 
 public class BaseDatos {
 
-    private static ObjectMapper mapper = new ObjectMapper();  //Create ObjectMapper object. It is a reusable object. provides functionality for reading and writing JSON
-    private File fileUser = new File("Usuario.json");
-    private File filePlane = new File("Avion.json");
-    private File FileUserflight = new File("UsuarioVuelo.json");
-    private File FileCompanyflight = new File("CompaniaVuelo.json");
-    private File FileCompany = new File("Compania.json");
+    private static final ObjectMapper mapper = new ObjectMapper();  //Create ObjectMapper object. It is a reusable object. provides functionality for reading and writing JSON
 
-////Object to JSON Conversion
-//jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student);
-
-    public BaseDatos() {}
-
-    //METODOS DE BUSQUEDA, EXISTENCIA Y GUARDADO
-
-    //trae Lista de Usuarios, compara por DNI los usuarios de la lista. Si encuentra coincidencia, devuelve el usuario con sus datos
-    //sino devuelve el Objetoc on el DNI asignado para crear un NUEVO USUARIO
-
-    // No es necesario buscar un usuario por DNI
-
-    /*public Usuario buscarUsuario(int dni) throws IOException {
-        List<User> userList =readListUserFile();
-        User newUser = new User(document);
-        newUser=checkExistence(userList,newUser);
-        return newUser
-        List<Usuario> listaUsuario = readListUserFile();
-        nuevoUsuario=existeUsuario(listaUsuario, nuevoUsuario);
-        return nuevoUsuario;
-    }*/
-
-    //Compara Usuarios por DNI
-    private Usuario existeUsuario(List<Usuario> listaUsuario, Usuario nuevoUsuario){
-        for (Usuario usuarioGuardado : listaUsuario) {
-            if(nuevoUsuario.getDni()==usuarioGuardado.getDni()){
-                nuevoUsuario=usuarioGuardado;
-            }
-        }
-        return nuevoUsuario;
+    public BaseDatos() {
     }
 
-    //UsuarioVuelo y VueloCompañia no son necesarios por ahora
-
-/* //Traigo objeto de tipo Vuelo, si es UsuarioVuelo, llama al método de escritura de Usuarios
-    //Si es de tipo VueloCompañia, llama al método de escritura de datos en Compañia
-
-    public void guardarDatosVuelo(Usuario usuario, Vuelo vuelo) throws IOException {
-        if (vuelo instanceof UsuarioVuelo)
-        {
-            agregarVueloAUsuario(usuario, (UsuarioVuelo)vuelo);
-        }
-        if (vuelo instanceof VueloCompañia)
-        {
-            escribirArchivoCompañia(vuelo);
-        }
-    }
-
-*/
-
-    public Compañia leerArchivoCompañia() throws JsonParseException, JsonMappingException, IOException { // Deserialize JSON file into Java object.
-        //Compañia compania = new Compañia("compania");
-        Compañia compania = null;
-        if(FileCompany.exists()) {
-            compania = mapper.readValue(FileCompany, Compañia.class);
-            compania.mostrarListaUsuario();
-        } else {
-            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-            writer.writeValue(new File("Compania.json"), FileCompany); //Jackson provide inbuilt methods for writing JSON data to JSON file.
-        }
-        return compania;
-    }
-
-    public void escribirArchivoCompañia2(Compañia compania) throws JsonGenerationException, JsonMappingException, IOException{ /// Serialize Java object info JSON file.
-        //FileCompany = new File("Compania.json");
+    public static Compañia levantarCompania() {
+        String path = "Compañia.json";
+        Compañia company = new Compañia("Aerolineas Coronarias");
+        File archivo = new File(path);
         try {
-            mapper.writeValue(FileCompany, compania);
+            if(!archivo.exists()) {
+                System.out.println("No existe base de datos previa de la compañía.");
+            }
+            else {
+                //Creamos un ArrayList de cada objeto dentro de la compania para extraerlos de forma separada del archivo, al final
+                //se insertan todos dentro de la compañia.
+                Compañia compañia= mapper.readValue(new File("Compañia.json"),  Compañia.class );
+                company = compañia;
+
+                System.out.println("Base de datos leida y cargada con exito.\n");
+            }
+
         } catch (IOException e) {
+            System.out.println("Error 505. No se pudo leer el archivo \n");
+            e.printStackTrace();
+        }
+        return company;
+    }
+
+    public static void guardarCompania(Compañia company) {
+        String path = "Compañia.json";
+        File archivoviejo = new File(path);
+        archivoviejo.delete();
+        File archivodb = new File(path);
+        try {
+            mapper.writeValue(archivodb, company);
+            System.out.println("Datos de la compañia actualizados y guardados \n");
+        } catch (IOException e) {
+            System.out.println("No se pudo leer la base de datos");
             e.printStackTrace();
         }
     }
-
-    //Metodos de DATOS DE COMPAÑIA, recibe un Object que busca en la base de datos de Compañia.
-    //Se ve el tipo de objeto que es y se agrega a la lista correspondiente de la Compañia
-  /*  public void escribirArchivoCompañia(Object obj) throws JsonGenerationException, JsonMappingException, IOException {
-
-        Compañia compania = leerArchivoCompañia();
-
-        if(obj instanceof Vuelo){
-            compania.addVuelo((Vuelo) obj);
-        }
-        if(obj instanceof Usuario){
-            compania.addUsuario((Usuario) obj);
-        }
-        if(obj instanceof Avion){
-            compania.addAvion((Avion) obj);
-        }
-        mapper.writeValue(FileCompany,compania);
-    }
-
-*/
-
-
-
-
-
-    //USUARIOVUELO, escritura y lectura
-/*
-    private void escribirArchivoUsuarioVuelo(Vuelo vuelo) throws JsonGenerationException, JsonMappingException, IOException{
-        mapper.writeValue(FileUserflight,vuelo);
-    }
-
-    private Vuelo leerArchivoUsuarioVuelo() throws JsonParseException, JsonMappingException, IOException {
-        Vuelo vuelo = mapper.readValue(FileUserflight, Vuelo.class);
-        System.out.println(vuelo.toString());
-        return vuelo;
-    }
-*/
-
-  /*  //trae al nuevo usuario, lo agrega a la lista de usuarios de la compañia, lo agrega en el archivo de usuarios
-    public void guardarNuevoUsuario(Compañia nuevoUsuario) throws IOException {
-
-        escribirArchivoCompañia2(nuevoUsuario);
-        //escribirArchivoUsuario(nuevoUsuario);
-        List<Usuario> listaUsuario = leerArchivoListadeUsuarios();
-        listaUsuario.add(nuevoUsuario);
-        escribirArchivoListadeUsuarios(listaUsuario);
-    }
-
-    //metodo para agregar un vuelo a la lista de vuelos de un usuario
-   public void agregarVueloAUsuario(UsuarioVuelo vuelo) throws IOException {
-        Usuario usuario = leerArchivoUsuario();
-        usuario.addVuelo(vuelo);
-        escribirArchivoUsuario(usuario);
-
-    }
-*/
-    public void agregarVueloAlUsuario2(Usuario usuario, UsuarioVuelo vuelo) throws IOException {
-        List<Usuario> listaUsuario = leerArchivoListadeUsuarios();
-        for (Usuario usuarioAgregar : listaUsuario) {
-            if(usuarioAgregar.getDni()==usuario.getDni())
-            {
-                usuarioAgregar.addVuelo(vuelo);
-            }
-        }
-        escribirArchivoUsuario(listaUsuario);
-    }
-
-
-    // Aca cambie el tipo de dato q devuelve, este metodo tiene q devolver la lista de usuarios
-    private Usuario leerArchivoUsuario() throws JsonParseException, JsonMappingException, IOException {
-        Usuario usuario = mapper.readValue(fileUser, Usuario.class);
-        System.out.println(usuario.toString());
-        return usuario;
-    }
-
-
-    private void escribirArchivoUsuario(List<Usuario> listaUsuario) throws JsonGenerationException, JsonMappingException, IOException {
-        mapper.writeValue(fileUser,listaUsuario);
-    }
-
-//ARCHIVO LISTA DE USUARIOS
-
-    //guarda la lista de usuarios
-    private void escribirArchivoListadeUsuarios(List<Usuario> listaUsuarios ) throws JsonGenerationException, JsonMappingException, IOException {
-        mapper.writeValue(fileUser,listaUsuarios);
-    }
-
-    //lee lista en json y la devuelve, cuando la devuelve se puede buscar un usuario en esa lista que devuelve
-    private List<Usuario> leerArchivoListadeUsuarios() throws JsonParseException, JsonMappingException, IOException {
-        List<Usuario> usuarios =mapper.readValue(fileUser, List.class);
-        System.out.println(usuarios.toString());
-        return usuarios;
-    }
-
-/*    //ARCHIVO VUELO
-    // se le pasa el Hastset de Plane y crea el archivo json de plane , escribe el hastset de plane en json
-    private void escribirArchivoVuelo(HashSet<Avion> avionHashSet) throws JsonGenerationException, JsonMappingException, IOException{
-        mapper.writeValue(filePlane,avionHashSet);
-    }
-
-    private HashSet<Vuelo> leerArchivoVuelo() throws JsonParseException, JsonMappingException, IOException {
-        HashSet<Vuelo> vueloHashSet = mapper.readValue(filePlane, HashSet.class);
-        System.out.println();//hay que pasarle el tostring
-        return vueloHashSet;
-    }
-*/
 
 }

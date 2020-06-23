@@ -1,17 +1,12 @@
 package com.company;
 
-import Interfaz.Keyin;
 import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import Interfaz.Menu;
 import Archivos.BaseDatos;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class Main implements Serializable {
 
@@ -19,7 +14,7 @@ public class Main implements Serializable {
         // Creando aviones
         Bronce avion1 = new Bronce(3000, 200, 4, 700, TipoPropulsion.HELICE);
         Bronce avion2 = new Bronce(2500, 150, 5, 600, TipoPropulsion.PISTONES);
-        Oro avion3 = new Oro(5000, 250, 10, 800, TipoPropulsion.PISTONES, true);
+        Oro avion3 = new Oro(5000, 250, 10, 800, TipoPropulsion.REACCION, true);
         Plata avion4 = new Plata(4000, 225, 7, 750, TipoPropulsion.PISTONES);
 
         // Cargando un usuario
@@ -51,67 +46,13 @@ public class Main implements Serializable {
         company.addVuelo(flight4);
 
         // El menu recibe la compañia cargada. El vuelo y el usuario se generan dentro del menu
+        BaseDatos db = new BaseDatos();
+        //Compañia comp = BaseDatos.levantarCompania();
 
         Menu menu = new Menu();
         menu.ejecutarMenu(company);
 
-        company.mostrarListaVuelos();
-        company.mostrarListaUsuario();
-        company.mostrarListaAviones();
-
-
-        /*
-        String path = "D:\\USUARIOS\\Desktop\\Santi\\tpfinal\\Compañia.txt";
-
-        File myFile = new File(path);
-
-        if (myFile.exists()) {
-
-            try {
-
-                // Escritura
-                FileOutputStream fileOutputStream = new FileOutputStream(myFile);
-
-                ObjectOutputStream objOutputStream = new ObjectOutputStream(fileOutputStream);
-
-                objOutputStream.writeObject(company);
-
-                objOutputStream.close();
-
-//              ESCRITURA EN JACKSON
-                File file = new File("Compañia.json");
-                ObjectMapper mapper = new ObjectMapper();
-                //Object to JSON in file
-                mapper.writeValue(file, company);
-//
-
-                //Lectura
-                FileInputStream fileInputStream = new FileInputStream(myFile);
-
-                ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
-
-                Object aux = objInputStream.readObject();
-
-                System.out.println("OBJECTINPUTSTREAM:\n" + aux.toString());
-
-                objInputStream.close();
-
-//                LECTURA EN JACKSON
-                file = new File("Compañia.json");
-                //Compañia[] comp = mapper.readValue(file, Compañia[].class);
-                ArrayList<Compañia> comp = mapper.readValue(file, new TypeReference<ArrayList<Compañia>>(){});
-                //Collection<Compañia> comp = mapper.readValue("Compañia.json", new TypeReference<Collection<Compañia>>() { });
-                System.out.println("JACKSON:\n" + comp.toString());
-                //comp.mostrarListaUsuario();
-
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println("No se pudo leer/escribir el archivo: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("No se encuentra el archivo.");
-        }*/
-
-
+        // Guarda la compañia en un archivo JSON
+        db.guardarCompania(company);
     }
 }
