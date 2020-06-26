@@ -3,8 +3,9 @@ package com.company;
 import java.io.Serializable;
 
 public class Bronce extends Avion implements Serializable {
+
     public Bronce (int capacidadCombustible, int costoPorKM, int capacidadMaxPasajeros, int velocidadMax, TipoPropulsion propulsion){
-        super(capacidadCombustible, costoPorKM, capacidadMaxPasajeros, velocidadMax, 3000, propulsion);
+        super(capacidadCombustible, costoPorKM, capacidadMaxPasajeros, velocidadMax, 3000, propulsion, false);
     }
 
     @Override

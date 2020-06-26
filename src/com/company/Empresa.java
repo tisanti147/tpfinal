@@ -6,13 +6,17 @@ import Usuario.Vuelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Compañia implements Serializable {
+public class Empresa implements Serializable {
     private String nombre;
     private ArrayList<Avion> ListaAviones;
     private ArrayList<Usuario> ListaUsuario;
     private ArrayList<Vuelo> ListaVuelos;
 
-    public Compañia(String nombre) {
+    public Empresa(){
+        super();
+    }
+
+    public Empresa(String nombre) {
         this.nombre = nombre;
         ListaAviones = new ArrayList<Avion>();
         ListaUsuario = new ArrayList<Usuario>();
@@ -110,8 +114,9 @@ public class Compañia implements Serializable {
     public Usuario getUsuarioDNI(long dni){
         Usuario aux = null;
         for (Usuario user: ListaUsuario){
-            if(dni == user.getDni())
+            if(dni == user.getDni()) {
                 aux = user;
+            }
         }
         return aux;
     }

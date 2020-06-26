@@ -4,7 +4,7 @@ import Usuario.Provincia;
 import Usuario.Usuario;
 import Usuario.Vuelo;
 import com.company.Avion;
-import com.company.Compañia;
+import com.company.Empresa;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,7 +22,7 @@ public class Menu {
     }
 
     // Switch construct
-    public void ejecutarMenu(Compañia company){
+    public void ejecutarMenu(Empresa company){
         int IdAvion = 0;
         int aviones;
         long dni;
@@ -220,12 +220,12 @@ public class Menu {
 
                 // Comprueba que el ID ingresado pertenezca a algun vuelo
                 do{
-                    idVuelo = Keyin.inInt("Ingrese el ID del vuelo que desea cancelar.");
+                    idVuelo = Keyin.inInt("Ingrese el ID del vuelo que desea cancelar: ");
                     if (user.getVueloConID(idVuelo) == null)
                         System.out.println("No hay vuelos que tengan ese ID.");
                 } while (user.getVueloConID(idVuelo) == null);
 
-                // Elimina el vuelo en el arreglo de Usuario y Compañia
+                // Elimina el vuelo en el arreglo de Usuario y Empresa
                 user.cancelarVuelo(user.getVueloConID(idVuelo));
                 company.cancelarVuelo(company.getVueloConID(idVuelo));
 

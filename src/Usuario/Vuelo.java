@@ -19,6 +19,7 @@ public class Vuelo implements Serializable {
     private Map<String, Integer> distanciaVuelo = new HashMap<>();
 
     public Vuelo(){
+        super();
         contador++;
         this.idVuelo = contador;
     }

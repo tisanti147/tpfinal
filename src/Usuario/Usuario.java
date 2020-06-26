@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
     private static int contadorUsuario=0;
 
     public Usuario(){
-
+        super();
     }
 
     public Usuario(String nombre, long dni, int edad) {
@@ -26,7 +26,16 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
         this.dni = dni;
         this.edad = edad;
-        listaVuelos = new ArrayList<Vuelo>();
+        this.listaVuelos = new ArrayList<Vuelo>();
+    }
+
+    public Usuario(String nombre, long dni, int edad, ArrayList<Vuelo> listaVuelos) {
+        this.contadorUsuario++;
+        this.id = contadorUsuario;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.edad = edad;
+        this.listaVuelos = listaVuelos;
     }
 
     public void addVuelo(Vuelo vuelo){
@@ -60,17 +69,17 @@ public class Usuario implements Serializable {
         String categoria = null;
         int nivel = 0;
         for (Vuelo vuelo: listaVuelos){
-            if (vuelo.getAvion() instanceof Bronce && nivel < 2) {
-                categoria = "Bronce";
-                nivel = 1;
-            }
-            if (vuelo.getAvion() instanceof Plata && nivel < 3) {
-                categoria = "Plata";
-                nivel = 2;
-            }
-            if (vuelo.getAvion() instanceof Oro) {
+            if (vuelo.getAvion().isConexionWifi()) {
                 categoria = "Oro";
                 nivel = 3;
+            } else {
+                if (vuelo.getAvion().getCostoPorKM() <= 200 && nivel < 2) {
+                    categoria = "Bronce";
+                    nivel = 1;
+                } else if (nivel < 3){
+                    categoria = "Plata";
+                    nivel = 2;
+                }
             }
         }
         return categoria;
@@ -79,6 +88,7 @@ public class Usuario implements Serializable {
     public int gastosTotales(){
         int gastos = 0;
         for (Vuelo vuelo: listaVuelos){
+            System.out.println(vuelo);
             gastos += vuelo.getCostoTotal();
         }
         return gastos;
@@ -110,5 +120,13 @@ public class Usuario implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public ArrayList<Vuelo> getListaVuelos() {
+        return listaVuelos;
+    }
+
+    public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
     }
 }

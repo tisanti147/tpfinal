@@ -1,5 +1,6 @@
 package Archivos;
-import com.company.Compañia;
+import com.company.Empresa;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +13,9 @@ public class BaseDatos {
     public BaseDatos() {
     }
 
-    public static Compañia levantarCompania() {
-        String path = "Compañia.json";
-        Compañia company = new Compañia("Aerolineas Coronarias");
+    public static Empresa levantarCompania() {
+        String path = "Empresa.json";
+        Empresa company = new Empresa("Aerolineas Coronarias");
         File archivo = new File(path);
         try {
             if(!archivo.exists()) {
@@ -22,9 +23,12 @@ public class BaseDatos {
             }
             else {
                 //Creamos un ArrayList de cada objeto dentro de la compania para extraerlos de forma separada del archivo, al final
-                //se insertan todos dentro de la compañia.
-                Compañia compañia= mapper.readValue(new File("Compañia.json"),  Compañia.class );
-                company = compañia;
+                //se insertan todos dentro de la empresa.
+                Empresa empresa = mapper.readValue(new File("Empresa.json"),  new TypeReference<Empresa>(){});
+                //company = empresa;
+                company.setListaAviones(empresa.getListaAviones());
+                company.setListaUsuario(empresa.getListaUsuario());
+                company.setListaVuelos(empresa.getListaVuelos());
 
                 System.out.println("Base de datos leida y cargada con exito.\n");
             }
@@ -36,8 +40,8 @@ public class BaseDatos {
         return company;
     }
 
-    public static void guardarCompania(Compañia company) {
-        String path = "Compañia.json";
+    public static void guardarCompania(Empresa company) {
+        String path = "Empresa.json";
         File archivoviejo = new File(path);
         archivoviejo.delete();
         File archivodb = new File(path);
